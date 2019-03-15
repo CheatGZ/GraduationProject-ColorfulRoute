@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/divider"
+        android:orientation="horizontal">
+
+        <com.amap.api.maps.TextureMapView
+            android:id="@+id/main_map_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true" />
+
+        <LinearLayout
+            android:id="@+id/layout_title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_light"
+            android:orientation="vertical"
+            android:paddingBottom="1dp">
+
+            <LinearLayout
+                android:id="@+id/title_bar"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="40dp"
+                android:background="@color/primary_light"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="卉跑 "
+                    android:textColor="@color/icons"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/grid_divider" />
+
+                <TextView
+                    android:id="@+id/title_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="8"
+                    android:textColor="@color/icons"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/primary" />
+
+            <com.bupt.colorfulroute.runningapp.uicomponent.ScrollTextView
+                android:id="@+id/scroll_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/primary_light"
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="5dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/change_map"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_above="@id/scale_show_layout"
+
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_primary_light"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@mipmap/change_map" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_scale_view"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/scale_show_layout"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_primary_light"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:maxEms="1"
+                android:text="选择跑步长度"
+                android:textColor="@color/icons"
+                android:textSize="12sp" />
+
+            <com.bupt.colorfulroute.runningapp.uicomponent.scaleview.VerticalScaleView
+                android:id="@+id/length_scale_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/scale_show_layout"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_above="@id/layout_start"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_primary_light"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/scale_show_button"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@mipmap/scale" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="100dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tip_left"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:alpha="0.6"
+                android:background="@drawable/slide_tip_left"
+                android:drawableLeft="@mipmap/silde_left"
+                android:gravity="center"
+                android:paddingEnd="20dp"
+                android:text="足  迹"
+                android:textColor="@color/icons"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@mipmap/transparent" />
+
+            <Button
+                android:id="@+id/btn_run_start"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:background="@drawable/selector_primary_btn"
+                android:text="规划跑"
+                android:textColor="@color/icons"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@mipmap/transparent" />
+
+            <TextView
+                android:id="@+id/tip_right"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:alpha="0.6"
+                android:background="@drawable/slide_tip_right"
+                android:drawableRight="@mipmap/silde_right"
+                android:gravity="center"
+                android:paddingStart="10dp"
+                android:text="个 人中 心"
+                android:textColor="@color/icons"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

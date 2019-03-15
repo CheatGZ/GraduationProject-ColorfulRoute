@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/icons"
+    android:orientation="vertical">
+
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/detail_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include layout="@layout/title_bar" />
+
+    <LinearLayout
+        android:id="@+id/layout_info"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/length_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:alpha="0.5"
+            android:background="@drawable/slide_tip_left"
+            android:gravity="center"
+            android:text="距离"
+            android:textColor="@color/icons"
+            android:visibility="invisible" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@mipmap/transparent" />
+
+        <TextView
+            android:id="@+id/time_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:alpha="0.5"
+            android:background="@drawable/slide_tip_left"
+            android:gravity="center"
+            android:text="时间"
+            android:textColor="@color/icons"
+            android:visibility="invisible" />
+    </LinearLayout>
+</RelativeLayout>

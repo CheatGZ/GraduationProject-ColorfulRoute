@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/icons"
+    android:orientation="vertical"
+    android:animateLayoutChanges="true">
+
+    <include layout="@layout/title_bar" />
+
+    <RelativeLayout
+        android:id="@+id/person_info_rel"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/primary_light">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/avatar_view"
+            android:layout_width="60.0dip"
+            android:layout_height="60.0dip"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20.0dip"
+            app:roundAsCircle="true"
+            app:roundingBorderWidth="3dp"
+            app:roundingBorderColor="@color/grid_divider"
+            fresco:actualImageScaleType="focusCrop"
+            fresco:placeholderImage="@mipmap/loading_pic"
+            fresco:progressBarAutoRotateInterval="5000"
+            fresco:progressBarImage="@mipmap/loading_pic"
+            />
+
+        <LinearLayout
+            android:id="@+id/info_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@id/avatar_view"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/user_name_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxEms="8"
+                android:maxLines="1"
+                android:text="用户"
+                android:textColor="@color/icons"
+                android:textSize="18sp" />
+
+
+            <LinearLayout
+                android:id="@+id/description_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="80dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/description_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:ellipsize="end"
+                    android:maxEms="15"
+                    android:maxLines="1"
+                    android:text="这个人很神秘，什么也没留下..."
+                    android:textColor="@color/grid_divider"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/description_edit"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:background="@mipmap/description_edit" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="fill_parent"
+        android:layout_height="10dp"
+        android:background="@color/primary_light"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/layout_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:src="@mipmap/info"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_weight="7"
+                android:gravity="center_vertical"
+                android:text="个人信息"
+                android:textColor="@color/primary_light"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="10dp"
+                android:background="@mipmap/go" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_one"
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/primary_dark" />
+
+        <LinearLayout
+            android:id="@+id/layout_achievement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:src="@mipmap/achievement"/>
+
+            <TextView
+                android:id="@+id/achievement_show"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_weight="7"
+                android:gravity="center_vertical"
+                android:text="运动徽章"
+                android:textColor="@color/primary_light"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/image_achievement_show"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="10dp"
+                android:background="@mipmap/go" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_two"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/primary_dark" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/achievement_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:visibility="invisible" />
+</LinearLayout>

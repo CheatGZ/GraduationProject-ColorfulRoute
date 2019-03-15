@@ -1,0 +1,74 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.bupt.colorfulroute">
+
+    <!-- 允许程序打开网络套接字 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 允许程序设置内置sd卡的写权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 允许程序获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 允许程序访问WiFi网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 允许程序读写手机状态和身份 -->
+    <uses-permission android:name="android.Manifest.permission.READ_PHONE_STATE" />
+    <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 获取手机录音机使用权限，听写、识别、语义理解需要用到此权限 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!--获取sd卡写的权限，用于文件上传和下载-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!--手机震动权限-->
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
+    <application
+        android:name=".util.BaseApplication"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".runningapp.activity.Splash"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".runningapp.activity.RouteSelectActivity" />
+        <activity android:name=".runningapp.activity.RunningNaviActivity" />
+        <activity android:name=".runningapp.activity.HistoryDetailActivity" />
+        <activity android:name=".runningapp.activity.MainActivity" />
+        <activity android:name=".runningapp.activity.LoginActivity" />
+        <activity android:name=".runningapp.activity.FreeRunActivity" />
+
+        <activity android:name=".runningapp.updateInfoActivity.UpdateInfoActivity" />
+        <activity android:name=".runningapp.updateInfoActivity.UpdateEmail" />
+        <activity android:name=".runningapp.updateInfoActivity.UpdateGender" />
+        <activity android:name=".runningapp.updateInfoActivity.UpdateHeight" />
+        <activity android:name=".runningapp.updateInfoActivity.UpdatePhone" />
+        <activity android:name=".runningapp.updateInfoActivity.UpdateAge" />
+        <activity android:name=".runningapp.updateInfoActivity.UpdateName" />
+        <activity android:name=".runningapp.updateInfoActivity.UpdateWeight" />
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="e71537e600e387a44a0a7874efbc9760" />
+
+        <!--<service android:name="com.amap.api.location.APSService" />-->
+        <service android:name="com.amap.api.location.APSService" />
+        <provider
+            android:name="cn.bmob.v3.util.BmobContentProvider"
+            android:authorities="com.bupt.colorfulroute.BmobContentProvider" />
+    </application>
+</manifest>

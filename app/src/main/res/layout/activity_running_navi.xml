@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/icons"
+    android:orientation="vertical">
+
+    <com.amap.api.navi.AMapNaviView
+        android:id="@+id/navi_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless" />
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/running_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/primary_light"
+        app:cardCornerRadius="5dp">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_primary_light"
+            android:columnCount="2"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/route_kind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="路径类型"
+                android:textColor="@color/icons"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/route_length"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="规划长度"
+                android:textColor="@color/grid_divider"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="跑 步 时 长:  "
+                android:textColor="@color/icons"
+                android:textSize="15sp" />
+
+            <Chronometer
+                android:id="@+id/chronometer"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:textColor="@color/grid_divider"
+                android:textSize="16sp" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="已 跑 距 离:  "
+                android:textColor="@color/icons"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/navi_length_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="0 m"
+                android:textColor="@color/color_red_dark"
+                android:textSize="16sp" />
+        </GridLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/runned_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="-10dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="-10dp"
+        android:visibility="gone"
+        app:cardCornerRadius="5dp">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="-10dp"
+            android:layout_marginEnd="-10dp"
+            android:background="@drawable/bg_primary_light"
+            android:columnCount="2"
+            android:paddingStart="40dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="本次规划跑"
+                android:textColor="@color/icons"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="已结束"
+                android:textColor="@color/grid_divider"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="跑 步 时 长:  "
+                android:textColor="@color/icons"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/run_time"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:text="10 分"
+                android:textColor="@color/grid_divider"
+                android:textSize="18sp" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="跑 步 距 离:  "
+                android:textColor="@color/icons"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/run_length"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="0 m"
+                android:textColor="@color/color_red_dark"
+                android:textSize="18sp" />
+        </GridLayout>
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.2"
+            android:background="@drawable/slide_tip_left"
+            android:gravity="center"
+            android:alpha="0.6">
+
+            <com.amap.api.navi.view.TrafficButtonView
+                android:id="@+id/myTrafficButtonView"
+                android:layout_width="35dp"
+                android:layout_height="35dp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@mipmap/transparent" />
+
+        <Button
+            android:id="@+id/navi_finish_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@drawable/selector_primary_btn"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:text="暂停(长按结束)"
+            android:textColor="@color/icons"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/back_main_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@drawable/selector_primary_btn"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:text="返回"
+            android:textColor="@color/icons"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@mipmap/transparent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.2"
+            android:background="@drawable/slide_tip_right"
+            android:gravity="center"
+            android:alpha="0.6">
+
+            <com.amap.api.navi.view.OverviewButtonView
+                android:id="@+id/myOverviewButtonView"
+                android:layout_width="35dp"
+                android:layout_height="35dp" />
+
+            <ImageView
+                android:id="@+id/weibo_share"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@mipmap/share_to_weibo"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
