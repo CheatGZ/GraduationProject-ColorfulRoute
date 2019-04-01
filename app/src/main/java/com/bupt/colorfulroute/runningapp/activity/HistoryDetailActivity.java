@@ -58,6 +58,10 @@ public class HistoryDetailActivity extends BaseActivity {
                 case R.id.left_layout:
                     finish();
                     break;
+                case R.id.right_layout:
+                    map.moveCamera(CameraUpdateFactory.changeLatLng(ployPoints.get(0)));
+                    map.moveCamera(CameraUpdateFactory.zoomTo(15));
+                    break;
                 default:
                     break;
             }
@@ -72,14 +76,15 @@ public class HistoryDetailActivity extends BaseActivity {
         setContentView(R.layout.activity_history_detail);
         ButterKnife.bind(this);
 
-
         //初始化地图
         mapView = findViewById(R.id.detail_map);
         mapView.onCreate(savedInstanceState);
         map = mapView.getMap();
 
         backButton.setBackgroundResource(R.mipmap.back);
+        rightButton.setBackgroundResource(R.mipmap.my_location_white);
         leftLayout.setOnClickListener(onClickListener);
+        rightLayout.setOnClickListener(onClickListener);
 
         //获取数据
         initMap();
@@ -110,12 +115,9 @@ public class HistoryDetailActivity extends BaseActivity {
                     map.getUiSettings().setAllGesturesEnabled(true);
                     map.getUiSettings().setZoomControlsEnabled(false);
 
+                    titleText.setText(mRouteInfo.getStartTime());
                     lengthText.setText("总距离: " + mRouteInfo.getLength() / 1000 + " km");
                     timeText.setText("总时间: " + timeFormat(+mRouteInfo.getTime()));
-                    lengthText.setVisibility(View.VISIBLE);
-                    lengthText.setAnimation(AnimationUtils.makeInAnimation(getApplicationContext(),true));
-                    timeText.setVisibility(View.VISIBLE);
-                    timeText.setAnimation(AnimationUtils.makeInAnimation(getApplicationContext(),true));
                 }
             }
         });

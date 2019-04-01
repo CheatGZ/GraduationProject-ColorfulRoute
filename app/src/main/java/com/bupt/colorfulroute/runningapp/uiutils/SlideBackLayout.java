@@ -8,9 +8,6 @@ package com.bupt.colorfulroute.runningapp.uiutils;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
@@ -24,8 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import java.util.Map;
-
 /**
  * Created by mjc on 2016/2/26.
  * 功能：当activity布局中嵌入当前布局，该activity可以从边缘滑动关闭
@@ -34,22 +29,38 @@ import java.util.Map;
  * 再把当前View添加到DecorView
  */
 public class SlideBackLayout extends FrameLayout {
-    /**当前Activity的DecorView*/
+    /**
+     * 当前Activity的DecorView
+     */
     private ViewGroup mDecorView;
-    /**DecorView下的LinearLayout*/
+    /**
+     * DecorView下的LinearLayout
+     */
     private View mRootView;
-    /**需要边缘滑动删除的Activity*/
+    /**
+     * 需要边缘滑动删除的Activity
+     */
     private Activity mActivity;
-    /**Drag助手类*/
+    /**
+     * Drag助手类
+     */
     private ViewDragHelper mViewDragHelper;
-    /**触发退出当前Activity的宽度*/
+    /**
+     * 触发退出当前Activity的宽度
+     */
     private float mSlideWidth;
-    /**屏幕的宽和高*/
+    /**
+     * 屏幕的宽和高
+     */
     private int mScreenWidth;
     private int mScreenHeight;
-    /**画笔，用来绘制阴影效果*/
+    /**
+     * 画笔，用来绘制阴影效果
+     */
     private Paint mPaint;
-    /**用于记录当前滑动距离*/
+    /**
+     * 用于记录当前滑动距离
+     */
     private int curSlideX;
 
 
@@ -85,7 +96,7 @@ public class SlideBackLayout extends FrameLayout {
         mActivity.getWindowManager().getDefaultDisplay().getMetrics(dm);
         mScreenWidth = dm.widthPixels;
         mScreenHeight = dm.heightPixels;
-        mSlideWidth = dm.widthPixels *0.28f;
+        mSlideWidth = dm.widthPixels * 0.28f;
     }
 
     @Override
@@ -97,6 +108,35 @@ public class SlideBackLayout extends FrameLayout {
     public boolean onTouchEvent(MotionEvent event) {
         mViewDragHelper.processTouchEvent(event);
         return true;
+    }
+
+    @Override
+    public void computeScroll() {
+        //使用settleCapturedViewAt方法是，必须重写computeScroll方法，传入true
+        //持续滚动期间，不断刷新ViewGroup
+        if (mViewDragHelper.continueSettling(true))
+            invalidate();
+
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        //进行阴影绘制,onDraw（）方法在ViewGroup中不一定会执行
+        drawShadow(canvas);
+        super.dispatchDraw(canvas);
+
+    }
+
+    private void drawShadow(Canvas canvas) {
+        canvas.save();
+        //构造一个渐变
+        Shader mShader = new LinearGradient(curSlideX - 40, 0, curSlideX, 0, new int[]{Color.parseColor("#1edddddd"), Color.parseColor("#6e666666"), Color.parseColor("#9e666666")}, null, Shader.TileMode.REPEAT);
+        //设置着色器
+        mPaint.setShader(mShader);
+        //绘制时，注意向左边偏移
+        RectF rectF = new RectF(curSlideX - 40, 0, curSlideX, mScreenHeight);
+        canvas.drawRect(rectF, mPaint);
+        canvas.restore();
     }
 
     class DragCallback extends ViewDragHelper.Callback {
@@ -151,37 +191,6 @@ public class SlideBackLayout extends FrameLayout {
             //触发边缘时，主动捕捉mRootView
             mViewDragHelper.captureChildView(mRootView, pointerId);
         }
-    }
-
-
-    @Override
-    public void computeScroll() {
-        //使用settleCapturedViewAt方法是，必须重写computeScroll方法，传入true
-        //持续滚动期间，不断刷新ViewGroup
-        if (mViewDragHelper.continueSettling(true))
-            invalidate();
-
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        //进行阴影绘制,onDraw（）方法在ViewGroup中不一定会执行
-        drawShadow(canvas);
-        super.dispatchDraw(canvas);
-
-    }
-
-
-    private void drawShadow(Canvas canvas) {
-        canvas.save();
-        //构造一个渐变
-        Shader mShader = new LinearGradient(curSlideX - 40, 0, curSlideX, 0, new int[]{Color.parseColor("#1edddddd"), Color.parseColor("#6e666666"), Color.parseColor("#9e666666")}, null, Shader.TileMode.REPEAT);
-        //设置着色器
-        mPaint.setShader(mShader);
-        //绘制时，注意向左边偏移
-        RectF rectF = new RectF(curSlideX - 40, 0, curSlideX, mScreenHeight);
-        canvas.drawRect(rectF, mPaint);
-        canvas.restore();
     }
 
 

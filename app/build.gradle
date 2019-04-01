@@ -7,12 +7,11 @@ android {
         minSdkVersion 22
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "1.2.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {
             //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so） 除去"arm64-v8a" , "x86_64", "armeabi"
-            abiFilters  "armeabi-v7a", "x86"
-
+            abiFilters "armeabi-v7a", "x86"
         }
     }
     buildTypes {
@@ -29,9 +28,12 @@ dependencies {
         repositories {
             jcenter()
             mavenCentral()
+            mavenLocal()
             maven { url "https://dl.bintray.com/thelasterstar/maven/" }
         }
         repositories {
+            mavenCentral()
+            mavenLocal()
             maven {
                 url "https://jitpack.io"
             }
@@ -66,5 +68,4 @@ dependencies {
     implementation 'com.squareup.okio:okio:2.1.0'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.okhttp3:okhttp:3.12.0'
-
 }

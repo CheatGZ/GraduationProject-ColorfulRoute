@@ -1944,30 +1944,30 @@ public class RouteGenerate {
                         }
                     }
                 }
-//                //删除重复路径
-//                Boolean[] deleteFlag = new Boolean[polyResourcePoints.size()];
-//                for (int i = 0; i < deleteFlag.length; i++)
-//                    deleteFlag[i] = false;
-//                //路线剪枝
-//                ArrayList<LatLng> optimizedPoints = new ArrayList<>();
-//                for (int i = 0, j; i < polyResourcePoints.size() - 1; i++) {
-//                    for (j = i + 1; j < polyResourcePoints.size(); j++) {
-//                        if (LatLngCalculate.isSamePoint(polyResourcePoints.get(i), polyResourcePoints.get(j))
-//                                && (j - i) <= polyResourcePoints.size() / 3) {
-//                            //剪枝
-//                            for (int deleteIndex = i + 1; deleteIndex <= j; deleteIndex++) {
-//                                deleteFlag[deleteIndex] = true;
-//                            }
-//                        }
-//                    }
-//                }
-//                for (int i = 0; i < polyResourcePoints.size(); i++) {
-//                    if (!deleteFlag[i])
-//                        optimizedPoints.add(polyResourcePoints.get(i));
-//                }
-//                polyResourcePoints = optimizedPoints;
-//                if (!LatLngCalculate.isSamePoint(polyResourcePoints.get(0), polyResourcePoints.get(polyResourcePoints.size() - 1)))
-//                    polyResourcePoints.add(new LatLng(polyResourcePoints.get(0).latitude, polyResourcePoints.get(0).longitude));
+                //删除重复路径
+                Boolean[] deleteFlag = new Boolean[polyResourcePoints.size()];
+                for (int i = 0; i < deleteFlag.length; i++)
+                    deleteFlag[i] = false;
+                //路线剪枝
+                ArrayList<LatLng> optimizedPoints = new ArrayList<>();
+                for (int i = 0, j; i < polyResourcePoints.size() - 1; i++) {
+                    for (j = i + 1; j < polyResourcePoints.size(); j++) {
+                        if (LatLngCalculate.isSamePoint(polyResourcePoints.get(i), polyResourcePoints.get(j))
+                                && (j - i) <= polyResourcePoints.size() / 3) {
+                            //剪枝
+                            for (int deleteIndex = i + 1; deleteIndex <= j; deleteIndex++) {
+                                deleteFlag[deleteIndex] = true;
+                            }
+                        }
+                    }
+                }
+                for (int i = 0; i < polyResourcePoints.size(); i++) {
+                    if (!deleteFlag[i])
+                        optimizedPoints.add(polyResourcePoints.get(i));
+                }
+                polyResourcePoints = optimizedPoints;
+                if (!LatLngCalculate.isSamePoint(polyResourcePoints.get(0), polyResourcePoints.get(polyResourcePoints.size() - 1)))
+                    polyResourcePoints.add(new LatLng(polyResourcePoints.get(0).latitude, polyResourcePoints.get(0).longitude));
 
 
                 //add polyline to schematic diagram map view
@@ -1995,13 +1995,13 @@ public class RouteGenerate {
                     map.getUiSettings().setZoomControlsEnabled(false);
                     map.getUiSettings().setAllGesturesEnabled(false);
                     activity.addSchematicDiagram(diagram);
-                    Log.d("cheatTest2","res="+diagram.getRouteData());
                 }
             }
 
             @Override
             public void errorHandler() {
-                activity.alert(new AlertMessage("路线规划出错", ""));
+                activity.alert(new AlertMessage("路线规划出错,请重新选择长度！", ""));
+                activity.finish();
             }
         });
 
@@ -2086,7 +2086,8 @@ public class RouteGenerate {
 
             @Override
             public void errorHandler() {
-                activity.alert(new AlertMessage("路线规划出错", ""));
+                activity.alert(new AlertMessage("路线规划出错,请重新选择长度！", ""));
+                activity.finish();
             }
 
             private void polyProcess() {

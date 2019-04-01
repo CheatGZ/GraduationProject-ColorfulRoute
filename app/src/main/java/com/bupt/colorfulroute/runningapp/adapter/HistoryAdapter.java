@@ -1,16 +1,14 @@
 package com.bupt.colorfulroute.runningapp.adapter;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bupt.colorfulroute.R;
-import com.bupt.colorfulroute.runningapp.activity.HistoryDetailActivity;
 
 import java.util.List;
 
@@ -43,19 +41,14 @@ public abstract class HistoryAdapter<T> extends RecyclerView.Adapter<HistoryAdap
         holder.getView(R.id.history_content).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOnItemClickListener.onItemClick(v,position);
+                mOnItemClickListener.onItemClick(v, position);
             }
         });
     }
 
-    //自定义接口传值
-    public interface OnItemClickListener {
-        void onItemClick(View view, int position);
-    }
     public void setOnItemClickListener(HistoryAdapter.OnItemClickListener onItemClickListener) {
         mOnItemClickListener = onItemClickListener;
     }
-
 
     @Override
     public int getItemCount() {
@@ -63,7 +56,6 @@ public abstract class HistoryAdapter<T> extends RecyclerView.Adapter<HistoryAdap
     }
 
     public abstract void convert(VH holder, T data, int position);
-
 
     @Override
     public void onItemDelete(int positon) {
@@ -76,6 +68,10 @@ public abstract class HistoryAdapter<T> extends RecyclerView.Adapter<HistoryAdap
         //目前设置不可拖动，无效果
     }
 
+    //自定义接口传值
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
 
     //ViewHolder
     public static class VH extends RecyclerView.ViewHolder {
@@ -101,11 +97,17 @@ public abstract class HistoryAdapter<T> extends RecyclerView.Adapter<HistoryAdap
             }
             return (T) v;
         }
-
-
         public void setText(int id, String value) {
             TextView view = getView(id);
             view.setText(value);
+        }
+        public void setImage(int id,int position){
+            TextView view=getView(id);
+            if(position%2==0){
+                view.setBackgroundResource(R.drawable.selector_history_btn2);
+            }else {
+                view.setBackgroundResource(R.drawable.selector_history_btn);
+            }
         }
     }
 

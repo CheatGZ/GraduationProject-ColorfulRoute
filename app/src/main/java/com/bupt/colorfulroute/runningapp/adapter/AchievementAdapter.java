@@ -1,13 +1,8 @@
 package com.bupt.colorfulroute.runningapp.adapter;
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -17,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bupt.colorfulroute.R;
-import com.bupt.colorfulroute.runningapp.activity.HistoryDetailActivity;
 import com.bupt.colorfulroute.util.CheckFormat;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -32,7 +26,6 @@ public abstract class AchievementAdapter<T> extends RecyclerView.Adapter<Achieve
     private List<T> list;
 
     private OnItemClickListener mOnItemClickListener;//自定义接口传值
-
 
 
     public AchievementAdapter(List<T> list) {
@@ -51,10 +44,10 @@ public abstract class AchievementAdapter<T> extends RecyclerView.Adapter<Achieve
     public void onBindViewHolder(VH holder, final int position) {
         convert(holder, list.get(position), position);
         //设置item监听
-        holder.getView(R.id.achievement_item).setOnClickListener(new View.OnClickListener() {
+        holder.getView(R.id.achievement_show_layout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOnItemClickListener.onItemClick(v,position);
+                mOnItemClickListener.onItemClick(v, position);
             }
         });
     }
@@ -66,16 +59,14 @@ public abstract class AchievementAdapter<T> extends RecyclerView.Adapter<Achieve
 
     public abstract void convert(VH holder, T data, int position);
 
-
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
+    }
 
     //自定义接口传值
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
     }
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        mOnItemClickListener = onItemClickListener;
-    }
-
 
     /**
      * ViewHolder
@@ -112,7 +103,36 @@ public abstract class AchievementAdapter<T> extends RecyclerView.Adapter<Achieve
 
         public void setImage(int id, int icon) {
             SimpleDraweeView view = getView(id);
-            Uri uri=Uri.parse("res://com.bupt.colorfulroute/"+icon);
+            Uri uri;
+            switch (icon) {
+                case 0:
+                    uri = Uri.parse("res://com.bupt.colorfulroute/" + R.mipmap.cat_thumbnail);
+                    break;
+                case 1:
+                    uri = Uri.parse("res://com.bupt.colorfulroute/" + R.mipmap.cattle_thumbnail);
+                    break;
+                case 2:
+                    uri = Uri.parse("res://com.bupt.colorfulroute/" + R.mipmap.fish_thumbnail);
+                    break;
+                case 3:
+                    uri = Uri.parse("res://com.bupt.colorfulroute/" + R.mipmap.frog_thumbnail);
+                    break;
+                case 4:
+                    uri = Uri.parse("res://com.bupt.colorfulroute/" + R.mipmap.monkey_thumbnail);
+                    break;
+                case 5:
+                    uri = Uri.parse("res://com.bupt.colorfulroute/" + R.mipmap.panda_thumbnail);
+                    break;
+                case 6:
+                    uri = Uri.parse("res://com.bupt.colorfulroute/" + R.mipmap.rabbit_thumbnail);
+                    break;
+                case 7:
+                    uri = Uri.parse("res://com.bupt.colorfulroute/" + R.mipmap.sloth_thumbnail);
+                    break;
+                default:
+                    uri = Uri.parse("res://com.bupt.colorfulroute/" + R.mipmap.no_achieve);
+                    break;
+            }
             view.setImageURI(uri);
         }
 
@@ -120,26 +140,20 @@ public abstract class AchievementAdapter<T> extends RecyclerView.Adapter<Achieve
             TextView view = getView(id);
             if (value == 0) {
                 view.setText("尚未解锁");
-            }else {
-                view.setText(CheckFormat.dateFormat2(value).substring(0, 10)+" 解锁");
+            } else {
+                view.setText(CheckFormat.dateFormat2(value).substring(0, 10) + " 解锁");
             }
         }
 
-        public void setUnShow(int icon, int title, int layout,int item, int unIcon,Boolean value) {
+        public void setUnShow(int icon, int title, int layout, Boolean value) {
             SimpleDraweeView view1 = getView(icon);
             TextView view2 = getView(title);
             if (!value) {
-                Uri uri=Uri.parse("res://com.bupt.colorfulroute/"+unIcon);
+                Uri uri = Uri.parse("res://com.bupt.colorfulroute/" + R.mipmap.no_achieve);
                 view1.setImageURI(uri);
                 view2.setText("未获得");
-
                 LinearLayout view3 = getView(layout);
-                LinearLayout view4=getView(item);
-                GradientDrawable gd = new GradientDrawable();
-                gd.setColor(Color.parseColor("#4A4B4F"));
-                gd.setCornerRadius(10f);
-                view3.setBackground(gd);
-                view4.setClickable(false);
+                view3.setBackgroundResource(R.drawable.selector_no_achievement_item);
             }
         }
     }

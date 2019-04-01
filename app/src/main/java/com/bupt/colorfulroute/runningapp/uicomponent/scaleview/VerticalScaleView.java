@@ -4,9 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
@@ -14,7 +12,6 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
-
 
 import com.bupt.colorfulroute.R;
 
@@ -145,8 +142,8 @@ public class VerticalScaleView extends View {
             scaleSpaceUnit = scaleSpace * 10 + SCALE_WIDTH_BIG + SCALE_WIDTH_SMALL * 9;
             rectHeight = scaleSpaceUnit / 2;
 
-            borderUp = height / 2 - ((min + max) / 2 - min) * scaleSpaceUnit;
-            borderDown = height / 2 + ((min + max) / 2 - min) * scaleSpaceUnit;
+            borderUp = height / 4 - ((min + max) / 2 - min) * scaleSpaceUnit;
+            borderDown = height / 4 + ((min + max) / 2 - min) * scaleSpaceUnit;
             midY = (borderUp + borderDown) / 2;
             originMidY = midY;
             minY = borderDown;
@@ -165,7 +162,7 @@ public class VerticalScaleView extends View {
             canvas.rotate(90);
             Rect rect = new Rect();
             String str = String.valueOf(i);
-            paint.setColor(getResources().getColor(R.color.icons));
+            paint.setColor(getResources().getColor(R.color.primary_light));
             paint.setTextSize(40);
             paint.getTextBounds(str, 0, str.length(), rect);
             int w = rect.width();
@@ -194,11 +191,11 @@ public class VerticalScaleView extends View {
 
         //画竖线
         paint.setStrokeWidth(LINE_WIDTH);
-        paint.setColor(getResources().getColor(R.color.icons));
+        paint.setColor(getResources().getColor(R.color.primary_light));
         canvas.drawLine(ruleWidth + LINE_WIDTH / 2, minY + SCALE_WIDTH_BIG / 2, ruleWidth + LINE_WIDTH / 2, minY - (max - min) * scaleSpaceUnit - SCALE_WIDTH_BIG / 2, paint);
         //画指针线
         paint.setColor(getResources().getColor(R.color.color_red_dark));
-        canvas.drawLine(ruleWidth/2, height/2 , ruleWidth, height/2 , paint);
+        canvas.drawLine(ruleWidth / 2, height / 4, ruleWidth, height / 4, paint);
 
 
         /*

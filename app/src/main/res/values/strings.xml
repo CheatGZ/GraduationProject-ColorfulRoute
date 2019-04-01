@@ -1,17 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">卉跑</string>
     <string name="calc_path_fail" tools:ignore="ExtraTranslation">路径规划失败，无法进入导航</string>
-    <string name="action_settings">Settings</string>
-    <string name="training_in_all">总共跑步</string>
-    <string name="minute">分钟</string>
-    <string name="finish">完成</string>
-    <string name="count">次</string>
-    <string name="adds_up">累计</string>
-    <string name="day_unit">天</string>
-    <string name="consume_calorie">消耗</string>
-    <string name="kcal_chinese">千卡</string>
-    <string name="start_run">开始</string>
-    <string name="passing_point">途经点</string>
-    <string name="km">km</string>
-    <string name="limit_word_number"><![CDATA[字数<=20]]></string>
 </resources>

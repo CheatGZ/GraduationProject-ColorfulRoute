@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -52,10 +50,9 @@ import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 
 public class LoginActivity extends AppCompatActivity {
+    private final int mRequestCode = 100;//权限请求码
     LoginActivity self = this;
-
     SsoHandler ssoHandler;
-
     WbAuthUtils utils = new WbAuthUtils();
     @BindView(R.id.activity_login_weibo_login_button)
     Button loginButton;
@@ -63,7 +60,19 @@ public class LoginActivity extends AppCompatActivity {
     LinearLayout loginBgLayout;
     UserInfo userInfo1 = new UserInfo();
     Achievement[] achievement = new Achievement[8];
-    private boolean isSignedUp=false;//判断是否已经注册
+    String[] permissions = new String[]{Manifest.permission.INTERNET,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.CAMERA};
+    List<String> mPermissionList = new ArrayList<>();
+
+
+    //请求权限
+    /**
+     * 不再提示权限时的展示对话框
+     */
+    AlertDialog mPermissionDialog;
+    String mPackName = "com.huawei.liwenzhi.weixinasr";
+    private boolean isSignedUp = false;//判断是否已经注册
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -86,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
         //activity右侧滑动滑出动画
         overridePendingTransition(R.anim.slide_in, R.anim.no_slide);
 
-        StatusBarUtils.setStatusBarColor(this,Color.TRANSPARENT,true);
+        StatusBarUtils.setStatusBarColor(this, Color.TRANSPARENT, false);
         if (Build.VERSION.SDK_INT >= 23) {//6.0才用动态权限
             initPermission();
         }
@@ -105,15 +114,6 @@ public class LoginActivity extends AppCompatActivity {
         loginBgLayout.setBackground(drawable);
     }
 
-
-    //请求权限
-
-    String[] permissions = new String[]{Manifest.permission.INTERNET,
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.CAMERA};
-    List<String> mPermissionList = new ArrayList<>();
-    private final int mRequestCode = 100;//权限请求码
-
     private void initPermission() {
         mPermissionList.clear();//清空没有通过的权限
 
@@ -127,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
         //申请权限
         if (mPermissionList.size() > 0) {//有权限没有通过，需要申请
             ActivityCompat.requestPermissions(this, permissions, mRequestCode);
-        }else{
+        } else {
             //说明权限都已经通过，可以做你想做的事情去
         }
 
@@ -151,19 +151,13 @@ public class LoginActivity extends AppCompatActivity {
             //如果有权限没有被允许
             if (hasPermissionDismiss) {
                 showPermissionDialog();//跳转到系统设置权限页面，或者直接关闭页面，不让他继续访问
-            }else{
+            } else {
                 //全部权限通过，可以进行下一步操作。。。
 
             }
         }
 
     }
-
-    /**
-     * 不再提示权限时的展示对话框
-     */
-    AlertDialog mPermissionDialog;
-    String mPackName = "com.huawei.liwenzhi.weixinasr";
 
     private void showPermissionDialog() {
         if (mPermissionDialog == null) {
@@ -212,34 +206,34 @@ public class LoginActivity extends AppCompatActivity {
     private void initAchievement(UserInfo userInfo) {
         List<Achievement> list = new ArrayList<>();
         //初始化成就信息
-        String[] titles=new String[]{"橘胖","夏洛莱牛","咸鱼君","黑斑侧褶蛙","金丝猴","熊猫滚滚","灰尾兔","三趾树懒"};
-        String[] conditions=new String[]{"第一次进入彩径","完成一次跑步","完成10次跑步","完成一次1km的跑步","完成一次10km的跑步","总跑步距离100km","总跑步时间10小时","分享一次跑步截图"};
-        String[] descriptions=new String[]{"橘猫是家猫常见的一种毛色，也叫橘子猫，桔猫，普遍存在于混种猫和不具独特规定毛色的注册纯种猫中，与品种无关，与被毛基因有关。"
-                ,"夏洛莱牛原产于法国中西部到东南部的夏洛莱省和涅夫勒地区，是举世闻名的大型肉牛品种，自育成以来就以其生长快、肉量多、体型大、耐粗放而受到国际市场的广泛欢迎，早已输往世界许多国家。"
-                ,"咸鱼，是粤语中的一种俗称。电影《少林足球》中的台词：做人如果没有梦想，和咸鱼有什么区别呢？"
-                ,"黑斑侧褶蛙，也叫黑斑蛙，属无尾目，蛙科，侧褶蛙属。分布于除新疆、西藏、云南、台湾、海南省外，广泛分布于各省。"
-                ,"金丝猴，毛质柔软，鼻子上翘，有缅甸金丝猴、怒江金丝猴、川金丝猴、滇金丝猴、黔金丝猴、越南金丝猴6种，其中除缅甸金丝猴和越南金丝猴外，均为中国特有的珍贵动物。"
-                ,"大熊猫是属于食肉目、熊科、大熊猫亚科和大熊猫属唯一的哺乳动物，体色为黑白两色，它有着圆圆的脸颊，大大的黑眼圈，胖嘟嘟的身体，标志性的内八字的行走方式，也有解剖刀般锋利的爪子。是世界上最可爱的动物之一。"
-                ,"灰尾兔也叫高原兔，是青藏高原的特有种，体毛浅灰棕，殿部青灰，尾毛浅白，尾基有灰斑。仅分布于阿尔金山和昆仑山海拔3000米以上的高寒草原、灌丛中，穴居，以棘豆、苔草等高山植物为食。"
-                ,"三趾树懒，是树懒科、树懒属的哺乳动物。三趾树懒头小而圆，体长50-60厘米，身上针毛长而粗糙。身上被毛原是灰棕色，后显绿色。"};
+        String[] titles = new String[]{"橘胖", "夏洛莱牛", "咸鱼君", "黑斑侧褶蛙", "金丝猴", "熊猫滚滚", "灰尾兔", "三趾树懒"};
+        String[] conditions = new String[]{"第一次进入彩径", "完成一次跑步", "完成10次跑步", "完成一次1km的跑步", "完成一次10km的跑步", "总跑步距离100km", "总跑步时间10小时", "分享一次跑步截图"};
+        String[] descriptions = new String[]{"橘猫是家猫常见的一种毛色，也叫橘子猫，桔猫，普遍存在于混种猫和不具独特规定毛色的注册纯种猫中，与品种无关，与被毛基因有关。"
+                , "夏洛莱牛原产于法国中西部到东南部的夏洛莱省和涅夫勒地区，是举世闻名的大型肉牛品种，自育成以来就以其生长快、肉量多、体型大、耐粗放而受到国际市场的广泛欢迎，早已输往世界许多国家。"
+                , "咸鱼，是粤语中的一种俗称。电影《少林足球》中的台词：做人如果没有梦想，和咸鱼有什么区别呢？"
+                , "黑斑侧褶蛙，也叫黑斑蛙，属无尾目，蛙科，侧褶蛙属。分布于除新疆、西藏、云南、台湾、海南省外，广泛分布于各省。"
+                , "金丝猴，毛质柔软，鼻子上翘，有缅甸金丝猴、怒江金丝猴、川金丝猴、滇金丝猴、黔金丝猴、越南金丝猴6种，其中除缅甸金丝猴和越南金丝猴外，均为中国特有的珍贵动物。"
+                , "大熊猫是属于食肉目、熊科、大熊猫亚科和大熊猫属唯一的哺乳动物，体色为黑白两色，它有着圆圆的脸颊，大大的黑眼圈，胖嘟嘟的身体，标志性的内八字的行走方式，也有解剖刀般锋利的爪子。是世界上最可爱的动物之一。"
+                , "灰尾兔也叫高原兔，是青藏高原的特有种，体毛浅灰棕，殿部青灰，尾毛浅白，尾基有灰斑。仅分布于阿尔金山和昆仑山海拔3000米以上的高寒草原、灌丛中，穴居，以棘豆、苔草等高山植物为食。"
+                , "三趾树懒，是树懒科、树懒属的哺乳动物。三趾树懒头小而圆，体长50-60厘米，身上针毛长而粗糙。身上被毛原是灰棕色，后显绿色。"};
 
-        int[] icons=new int[]{R.mipmap.cat_thumbnail
-                ,R.mipmap.cattle_thumbnail
-                ,R.mipmap.fish_thumbnail
-                ,R.mipmap.frog_thumbnail
+        int[] icons = new int[]{R.mipmap.cat_thumbnail
+                , R.mipmap.cattle_thumbnail
+                , R.mipmap.fish_thumbnail
+                , R.mipmap.frog_thumbnail
                 , R.mipmap.monkey_thumbnail
-                ,R.mipmap.panda_thumbnail
-                ,R.mipmap.rabbit_thumbnail
-                ,R.mipmap.sloth_thumbnail};
+                , R.mipmap.panda_thumbnail
+                , R.mipmap.rabbit_thumbnail
+                , R.mipmap.sloth_thumbnail};
         for (int i = 0; i < 8; i++) {
             achievement[i] = new Achievement();
             list.add(achievement[i]);
         }
         userInfo.setAchievement(list);
         //设置成就信息(获得和未获得)
-        String unIconUri= ImageToUri.imageTranslateUri(this,R.mipmap.no_achieve);
+        String unIconUri = ImageToUri.imageTranslateUri(this, R.mipmap.no_achieve);
 
-        for(int i=0;i<8;i++){
+        for (int i = 0; i < 8; i++) {
             userInfo.getAchievement().get(i).setTitleId(i);//成就id
             userInfo.getAchievement().get(i).setUnIcon(R.mipmap.no_achieve);//未获得成就icon
             userInfo.getAchievement().get(i).setIcon(icons[i]);
@@ -249,7 +243,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         //设置获得时间
         userInfo.getAchievement().get(0).setTimeAchieved(System.currentTimeMillis());
-        for(int i=1;i<8;i++){
+        for (int i = 1; i < 8; i++) {
             userInfo.getAchievement().get(i).setTimeAchieved(0L);
         }
     }
@@ -288,85 +282,85 @@ public class LoginActivity extends AppCompatActivity {
                                 } else {
                                     isSignedUp = false;
                                 }
+                                if (isSignedUp) {
+                                    //已注册
+                                    BmobQuery<UserInfo> bmobQuery2 = new BmobQuery<>();
+                                    bmobQuery2.addWhereEqualTo("account", account);
+                                    bmobQuery2.findObjects(new FindListener<UserInfo>() {
+                                        @Override
+                                        public void done(List<UserInfo> list, BmobException e) {
+                                            if (e == null) {
+                                                String objectId = list.get(0).getObjectId();
+                                                //将当前账号写入sharedpreference
+                                                SharedPreferences sp = self.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                                                SharedPreferences.Editor editor = sp.edit();//获取编辑器
+                                                editor.putString("account", account);
+                                                editor.putString("name", screen_name);
+                                                editor.putString("objectId", objectId);
+                                                editor.putInt("RouteKind", 0);
+                                                editor.putBoolean("mapShow", true);
+                                                editor.apply();//提交修改
+
+                                                //登录成功，跳转界面
+                                                Toast.makeText(self, "登录成功", Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(self, MainActivity.class);
+                                                startActivity(intent);
+                                                finish();
+                                            } else {
+                                                Toast.makeText(self, "彩径尽头发生未知错误，请重新登录！", Toast.LENGTH_SHORT).show();
+                                                System.out.println("Bmob login error" + e);
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    //未注册,初始化数据
+                                    userInfo1.setAccount(account);
+                                    userInfo1.setName(screen_name);
+                                    userInfo1.setGender(gender);
+                                    userInfo1.setIcon(icon);
+                                    userInfo1.setDescription(description);
+                                    userInfo1.setNumber(0);
+                                    userInfo1.setTotalCalorie(0);
+                                    userInfo1.setTotalTime(0L);
+                                    userInfo1.setTotalLength(0D);
+                                    userInfo1.setWeight(0);
+                                    userInfo1.setHeight(0);
+                                    userInfo1.setAge(0);
+                                    //初始化成就信息
+                                    initAchievement(userInfo1);
+                                    //初始化显示成就
+                                    userInfo1.setTitle("无");
+                                    userInfo1.save(new SaveListener<String>() {
+                                        @Override
+                                        public void done(String s, BmobException e) {
+                                            if (e == null) {
+                                                //将当前账号写入sharedpreference
+                                                SharedPreferences sp = self.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                                                SharedPreferences.Editor editor = sp.edit();//获取编辑器
+                                                editor.putString("account", account);
+                                                editor.putString("name", screen_name);
+                                                editor.putString("objectId", s);
+                                                editor.putInt("RouteKind", 0);
+                                                editor.apply();//提交修改
+
+                                                //登录成功，跳转界面
+                                                Toast.makeText(self, "登录成功", Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(self, MainActivity.class);
+                                                startActivity(intent);
+                                                finish();
+                                            } else {
+                                                System.out.println("注册失败：" + e.getMessage());
+                                                Toast.makeText(self, "注册失败，请重新登录！", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                                }
                             } else {
-                                Toast.makeText(self, "彩径服务器发生未知错误，请重新登录！", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(self, "卉跑服务器失去联系，请重新登录！", Toast.LENGTH_SHORT).show();
                                 System.out.println("Bmob login error" + e);
                             }
                         }
                     });
-
-                    if (isSignedUp) {
-                        //已注册
-                        bmobQuery.addWhereEqualTo("account", account);
-                        bmobQuery.findObjects(new FindListener<UserInfo>() {
-                            @Override
-                            public void done(List<UserInfo> list, BmobException e) {
-                                if (e == null) {
-                                    String objectId = list.get(0).getObjectId();
-                                    //将当前账号写入sharedpreference
-                                    SharedPreferences sp = self.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = sp.edit();//获取编辑器
-                                    editor.putString("account", account);
-                                    editor.putString("name", screen_name);
-                                    editor.putString("objectId", objectId);
-                                    editor.putInt("RouteKind", 0);
-                                    editor.putBoolean("mapShow",true);
-                                    editor.apply();//提交修改
-
-                                    //登录成功，跳转界面
-                                    Toast.makeText(self, "登录成功", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(self, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Toast.makeText(self, "彩径尽头发生未知错误，请重新登录！", Toast.LENGTH_SHORT).show();
-                                    System.out.println("Bmob login error" + e);
-                                }
-                            }
-                        });
-                    } else {
-                        //未注册,初始化数据
-                        userInfo1.setAccount(account);
-                        userInfo1.setName(screen_name);
-                        userInfo1.setGender(gender);
-                        userInfo1.setIcon(icon);
-                        userInfo1.setDescription(description);
-                        userInfo1.setNumber(0);
-                        userInfo1.setTotalCalorie(0);
-                        userInfo1.setTotalTime(0L);
-                        userInfo1.setTotalLength(0D);
-                        userInfo1.setWeight(0);
-                        userInfo1.setHeight(0);
-                        userInfo1.setAge(0);
-                        //初始化成就信息
-                        initAchievement(userInfo1);
-                        //初始化显示成就
-                        userInfo1.setTitle("无");
-                        userInfo1.save(new SaveListener<String>() {
-                            @Override
-                            public void done(String s, BmobException e) {
-                                if (e == null) {
-                                    //将当前账号写入sharedpreference
-                                    SharedPreferences sp = self.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = sp.edit();//获取编辑器
-                                    editor.putString("account", account);
-                                    editor.putString("name", screen_name);
-                                    editor.putString("objectId", s);
-                                    editor.putInt("RouteKind", 0);
-                                    editor.apply();//提交修改
-
-                                    //登录成功，跳转界面
-                                    Toast.makeText(self, "登录成功", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(self, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    System.out.println("注册失败：" + e.getMessage());
-                                    Toast.makeText(self, "注册失败，请重新登录！", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -375,7 +369,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(String errorMessage) {
                 //登录失败
-                Toast.makeText(self, "微博服务器发生未知错误，请重新登录！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(self, "微博服务器失去联系，请重新登录！", Toast.LENGTH_SHORT).show();
             }
         });
     }

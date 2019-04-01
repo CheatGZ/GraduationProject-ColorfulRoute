@@ -21,10 +21,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <!--手机震动权限-->
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name=".util.BaseApplication"
@@ -34,7 +32,8 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:targetApi="n">
         <activity
             android:name=".runningapp.activity.Splash"
             android:launchMode="singleTask">
@@ -51,6 +50,7 @@
         <activity android:name=".runningapp.activity.MainActivity" />
         <activity android:name=".runningapp.activity.LoginActivity" />
         <activity android:name=".runningapp.activity.FreeRunActivity" />
+        <activity android:name=".runningapp.activity.AchievementActivity" />
 
         <activity android:name=".runningapp.updateInfoActivity.UpdateInfoActivity" />
         <activity android:name=".runningapp.updateInfoActivity.UpdateEmail" />
@@ -65,7 +65,6 @@
             android:name="com.amap.api.v2.apikey"
             android:value="e71537e600e387a44a0a7874efbc9760" />
 
-        <!--<service android:name="com.amap.api.location.APSService" />-->
         <service android:name="com.amap.api.location.APSService" />
         <provider
             android:name="cn.bmob.v3.util.BmobContentProvider"

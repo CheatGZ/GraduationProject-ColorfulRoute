@@ -29,7 +29,6 @@ public class StatusBarUtils {
     }
 
     public static void fullScreen(Activity activity) {
-        if (Build.VERSION.SDK_INT >= 22) {
             Window window = activity.getWindow();
             View decorView = window.getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -37,7 +36,6 @@ public class StatusBarUtils {
                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                     | View.SYSTEM_UI_FLAG_FULLSCREEN;
             decorView.setSystemUiVisibility(option);
-        }
     }
 
 }

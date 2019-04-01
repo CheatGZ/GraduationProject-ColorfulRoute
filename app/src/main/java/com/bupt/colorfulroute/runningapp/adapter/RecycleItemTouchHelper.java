@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
@@ -128,10 +129,10 @@ public class RecycleItemTouchHelper extends ItemTouchHelper.Callback {
             View itemView = viewHolder.itemView;//获取滑动的view
             Resources resources=mContext.getResources();
             Bitmap bitmap = BitmapFactory.decodeResource(resources,R.mipmap.delete_item);//获取删除指示的背景图片
-            int padding = 10;//图片绘制的padding
+            int padding = 15;//图片绘制的padding
             int maxDrawWidth = 5* padding + bitmap.getWidth();//最大的绘制宽度
             Paint paint = new Paint();
-            paint.setColor(resources.getColor(R.color.icons));
+            paint.setColor(mContext.getResources().getColor(R.color.icons));
             int x = Math.round(Math.abs(dX));
             int drawWidth = Math.min(x, maxDrawWidth);//实际的绘制宽度，取实时滑动距离x和最大绘制距离maxDrawWidth最小值
             int itemTop = itemView.getBottom() - itemView.getHeight();//绘制的top位置
@@ -140,7 +141,8 @@ public class RecycleItemTouchHelper extends ItemTouchHelper.Callback {
             //向右滑动
             if (dX > 0) {
                 //根据滑动实时绘制一个背景
-                c.drawRect(itemView.getLeft(), itemTop, drawWidth, itemView.getBottom(), paint);
+//                c.drawRect(itemView.getLeft(), itemTop, drawWidth, itemView.getBottom(), paint);
+                c.drawRect(0, bitmap.getHeight(), bitmap.getWidth(), 0, paint);
                 //在背景上面绘制图片
                 if (x > padding) {//滑动距离大于padding时开始绘制图片
                     //指定图片绘制的位置

@@ -19,34 +19,66 @@
 
         <RadioButton
             android:id="@+id/none"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
+            android:button="@null"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:text="保密"
-            android:textColor="@color/icons"/>
+            android:background="@drawable/rb_gender"
+            android:textColor="@drawable/rb_tc_gender"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"/>
 
         <RadioButton
             android:id="@+id/male"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
+            android:button="@null"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/rb_gender"
             android:text="男"
-            android:textColor="@color/icons" />
+            android:textColor="@drawable/rb_tc_gender" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"/>
 
         <RadioButton
             android:id="@+id/female"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
+            android:button="@null"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/rb_gender"
             android:text="女"
-            android:textColor="@color/icons" />
+            android:textColor="@drawable/rb_tc_gender"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"/>
 
         <RadioButton
             android:id="@+id/other"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
+            android:button="@null"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/rb_gender"
             android:text="其他"
-            android:textColor="@color/icons" />
+            android:textColor="@drawable/rb_tc_gender"/>
     </RadioGroup>
 </LinearLayout>

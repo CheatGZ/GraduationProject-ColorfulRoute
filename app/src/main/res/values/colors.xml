@@ -1,28 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
 
     <color name="colorAccent">#D81B60</color>
-    <color name="blue">#1296db</color>
 
 
-    <color name="colorLogoutRed">#FF6064</color>
     <color name="black">#000000</color>
     <color name="color_red_dark">#EF814E</color>
 
     //配色方案1
-    <!--<color name="primary">#2196F3</color>-->
-    <!--<color name="primary_dark">#1976D2</color>-->
-    <!--<color name="primary_light">#BBDEFB</color>-->
     <color name="primary">#4A4B4F</color>
     <color name="primary_dark">#31313D</color>
     <color name="primary_light">#393D49</color>
-    <color name="accent">#9E9E9E</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
     <color name="divider_light">#EDEDED</color>
     <color name="grid_divider">#CFD6EB</color>
+    <color name="blue_history_map">#F3F8FE</color>
 
 </resources>

@@ -1,13 +1,8 @@
 package com.bupt.colorfulroute.util;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.Window;
 import android.widget.Toast;
 
 import com.bupt.colorfulroute.R;
@@ -32,7 +27,7 @@ abstract public class BaseActivity extends AppCompatActivity {
         mSlideBackLayout = new SlideBackLayout(this);
         mSlideBackLayout.bind();
         //状态栏颜色
-        StatusBarUtils.setStatusBarColor(this,Color.TRANSPARENT,false);
+        StatusBarUtils.setStatusBarColor(this, Color.TRANSPARENT, false);
 
         //activity右侧滑动滑出动画
         overridePendingTransition(R.anim.slide_in, R.anim.no_slide);
@@ -51,10 +46,7 @@ abstract public class BaseActivity extends AppCompatActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.no_slide, R.anim.slide_exit);
-
     }
-
-
 
 
     // 添加Activity方法

@@ -1,14 +1,8 @@
 package com.bupt.colorfulroute.util;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.bupt.colorfulroute.R;
@@ -22,19 +16,13 @@ import cn.bmob.v3.Bmob;
 abstract public class AaseActivity extends AppCompatActivity {
     private BaseApplication application;
     private AaseActivity oContext;
-    private SlideBackLayout mSlideBackLayout;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //bmob后端云
         Bmob.initialize(this, "e834b45389cad785bed5c43e2942b606");
-
-        //右滑退出
-        mSlideBackLayout = new SlideBackLayout(this);
-        mSlideBackLayout.bind();
         //状态栏颜色
-
-        StatusBarUtils.setStatusBarColor(this,Color.TRANSPARENT,false);
+        StatusBarUtils.setStatusBarColor(this, Color.TRANSPARENT, false);
 
         //activity右侧滑动滑出动画
         overridePendingTransition(R.anim.slide_in, R.anim.no_slide);
@@ -58,10 +46,12 @@ abstract public class AaseActivity extends AppCompatActivity {
     public void addActivity() {
         application.addActivity_(oContext);// 调用myApplication的添加Activity方法
     }
+
     //销毁当个Activity方法
     public void removeActivity() {
         application.removeActivity_(oContext);// 调用myApplication的销毁单个Activity方法
     }
+
     //销毁所有Activity方法
     public void removeALLActivity() {
         application.removeALLActivity_();// 调用myApplication的销毁所有Activity方法
@@ -71,6 +61,7 @@ abstract public class AaseActivity extends AppCompatActivity {
     public void showToast(String text) {
         Toast.makeText(oContext, text, Toast.LENGTH_SHORT).show();
     }
+
     public void alert(AlertMessage alertMessage) {
         new android.app.AlertDialog.Builder(this).setTitle(alertMessage.getTitle())
                 .setMessage(alertMessage.getDetail())

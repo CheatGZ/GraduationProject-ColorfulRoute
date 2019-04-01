@@ -1,31 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp"
-    android:background="@color/primary_light"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:padding="5dp"
+    android:background="@drawable/bg_white"
     android:gravity="center">
 
     <RadioGroup
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_primary_light"
+        android:background="@drawable/bg_white"
         android:gravity="center"
-        android:orientation="horizontal">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:ems="1"
-                android:text="选择路径形状"
-                android:textColor="@color/icons"
-                android:textSize="10sp"
-                android:gravity="center" />
-
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
 
         <RadioButton
             android:id="@+id/bt1"
@@ -36,10 +26,12 @@
             android:gravity="center"
             android:text="圆形"
             android:textColor="@drawable/text_route_kind_selector"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:elevation="5dp"
+            android:layout_margin="3dp"/>
 
         <View
-            android:layout_width="10dp"
+            android:layout_width="5dp"
             android:layout_height="50dp"
             android:background="@mipmap/transparent" />
 
@@ -52,10 +44,12 @@
             android:gravity="center"
             android:text="三叶花"
             android:textColor="@drawable/text_route_kind_selector"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:elevation="5dp"
+            android:layout_margin="3dp" />
 
         <View
-            android:layout_width="10dp"
+            android:layout_width="5dp"
             android:layout_height="50dp"
             android:background="@mipmap/transparent" />
 
@@ -68,10 +62,12 @@
             android:gravity="center"
             android:text="四叶花"
             android:textColor="@drawable/text_route_kind_selector"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:elevation="5dp"
+            android:layout_margin="3dp" />
 
         <View
-            android:layout_width="10dp"
+            android:layout_width="5dp"
             android:layout_height="50dp"
             android:background="@mipmap/transparent" />
 
@@ -84,10 +80,12 @@
             android:gravity="center"
             android:text="四叶花Ⅱ型"
             android:textColor="@drawable/text_route_kind_selector"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:elevation="5dp"
+            android:layout_margin="3dp"/>
 
         <View
-            android:layout_width="10dp"
+            android:layout_width="5dp"
             android:layout_height="50dp"
             android:background="@mipmap/transparent" />
 
@@ -100,12 +98,10 @@
             android:gravity="center"
             android:text="四叶花Ⅲ型"
             android:textColor="@drawable/text_route_kind_selector"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:elevation="5dp"
+            android:layout_margin="3dp"/>
 
-        <ImageView
-            android:layout_width="5dp"
-            android:layout_height="50dp"
-            android:background="@mipmap/transparent" />
 
     </RadioGroup>
 </LinearLayout>

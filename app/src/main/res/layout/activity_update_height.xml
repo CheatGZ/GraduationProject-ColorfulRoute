@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/icons"
-    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <include layout="@layout/title_bar" />
@@ -15,5 +14,7 @@
         android:background="@drawable/bg_edit_text"
         android:inputType="number"
         android:maxLines="1"
+        android:maxLength="5"
+        android:textCursorDrawable="@null"
         android:textColor="@color/icons" />
 </LinearLayout>

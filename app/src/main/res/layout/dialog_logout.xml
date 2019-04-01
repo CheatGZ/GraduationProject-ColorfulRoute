@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_primary_light"
+    android:background="@drawable/bg_white"
     android:minWidth="200dp"
     android:orientation="vertical">
 
@@ -16,7 +16,7 @@
         android:layout_weight="2"
         android:gravity="center_vertical"
         android:text="请选择您的操作:"
-        android:textColor="@color/grid_divider"
+        android:textColor="@color/primary_light"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -27,9 +27,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
         android:layout_weight="5"
-        android:background="@drawable/bg_primary"
+        android:background="@drawable/bg_divider_light"
         android:text="退 出 彩 径"
-        android:textColor="@color/color_red_dark"
+        android:textColor="@color/primary"
         android:textStyle="bold" />
 
     <Button
@@ -42,8 +42,8 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
         android:layout_weight="5"
-        android:background="@drawable/bg_primary"
+        android:background="@drawable/bg_divider_light"
         android:text="切 换 账 号"
-        android:textColor="@color/grid_divider" />
+        android:textColor="@color/divider" />
 
 </LinearLayout>

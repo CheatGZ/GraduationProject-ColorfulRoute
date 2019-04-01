@@ -14,5 +14,6 @@
         android:background="@drawable/bg_edit_text"
         android:inputType="number"
         android:maxLength="3"
+        android:textCursorDrawable="@null"
         android:textColor="@color/icons" />
 </LinearLayout>

@@ -13,9 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bupt.colorfulroute.R;
-import com.bupt.colorfulroute.util.BaseActivity;
 import com.bupt.colorfulroute.runningapp.entity.UserInfo;
-import com.bupt.colorfulroute.runningapp.uiutils.StatusBarUtils;
+import com.bupt.colorfulroute.util.BaseActivity;
 
 import java.util.List;
 
@@ -118,7 +117,7 @@ public class UpdateInfoActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
-                    if(!nameText.equals(null)){
+                    if (!nameText.equals(null)) {
                         nameText.setText(userInfo.getName());
                     }
                     if (userInfo.getGender().equals("f")) {

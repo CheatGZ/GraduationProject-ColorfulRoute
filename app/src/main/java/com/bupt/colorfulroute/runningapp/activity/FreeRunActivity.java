@@ -83,13 +83,13 @@ public class FreeRunActivity extends BaseActivity {
                     if (!flag) {
                         chronometer.stop();
                         runFinishButton.setText("继续(长按结束)");
-                        runFinishButton.setBackgroundResource(R.drawable.bg_primary);
+                        runFinishButton.setBackgroundResource(R.drawable.bg_divider);
                         flag = true;
                     } else {
                         chronometer.setBase(CheckFormat.convertStrTimeToLong(chronometer.getText().toString()));
                         chronometer.start();
                         runFinishButton.setText("暂停(长按结束)");
-                        runFinishButton.setBackgroundResource(R.drawable.bg_red_dark);
+                        runFinishButton.setBackgroundResource(R.drawable.selector_primary_btn);
                         flag = false;
                     }
                     break;
@@ -110,10 +110,7 @@ public class FreeRunActivity extends BaseActivity {
             switch (v.getId()) {
                 case R.id.run_finish_button:
                     isRun = false;
-                    vibrator.vibrate(500);
-//                    runFinishButton.setBackground(getDrawable(R.drawable.bg_divider_light));
-//                    runFinishButton.setClickable(false);
-//                    runFinishButton.setLongClickable(false);
+                    vibrator.vibrate(250);
                     runningDate.setVisibility(View.GONE);
                     runningDate.setAnimation(AnimationUtils.makeOutAnimation(getApplicationContext(), false));
                     runFinishButton.setVisibility(View.GONE);
@@ -146,7 +143,7 @@ public class FreeRunActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_free_run);
-        StatusBarUtils.setStatusBarColor(this, Color.TRANSPARENT, true);
+        StatusBarUtils.setStatusBarColor(this, Color.TRANSPARENT, false);
         ButterKnife.bind(this);
         mapView = findViewById(R.id.map_view);
         vibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
@@ -229,10 +226,6 @@ public class FreeRunActivity extends BaseActivity {
         aMap.moveCamera(CameraUpdateFactory.zoomTo(19));
         aMap.getUiSettings().setAllGesturesEnabled(true);//设置手势
         aMap.getUiSettings().setZoomControlsEnabled(false);//设置缩放
-    }
-
-    @Override
-    public void onBackPressed() {
     }
 
     @Override

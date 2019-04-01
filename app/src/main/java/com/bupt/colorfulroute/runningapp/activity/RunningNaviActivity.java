@@ -223,7 +223,7 @@ public class RunningNaviActivity extends BaseActivity implements AMapNaviViewLis
                 case R.id.navi_finish_button:
                     isRun = false;
                     aMapNavi.stopNavi();
-                    vibrator.vibrate(500);
+                    vibrator.vibrate(250);
                     runningDate.setVisibility(View.GONE);
                     runningDate.setAnimation(AnimationUtils.makeOutAnimation(getApplicationContext(), false));
                     naviFinishButton.setVisibility(View.GONE);
@@ -261,13 +261,13 @@ public class RunningNaviActivity extends BaseActivity implements AMapNaviViewLis
                     if (!flag) {
                         chronometer.stop();
                         naviFinishButton.setText("继续(长按结束)");
-                        naviFinishButton.setBackgroundResource(R.drawable.bg_primary);
+                        naviFinishButton.setBackgroundResource(R.drawable.bg_divider);
                         flag = true;
                     } else {
                         chronometer.setBase(CheckFormat.convertStrTimeToLong(chronometer.getText().toString()));
                         chronometer.start();
                         naviFinishButton.setText("暂停(长按结束)");
-                        naviFinishButton.setBackgroundResource(R.drawable.bg_red_dark);
+                        naviFinishButton.setBackgroundResource(R.drawable.selector_primary_btn);
                         flag = false;
                     }
                     break;
@@ -302,7 +302,7 @@ public class RunningNaviActivity extends BaseActivity implements AMapNaviViewLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_running_navi);
-        StatusBarUtils.setStatusBarColor(this,Color.TRANSPARENT,true);
+        StatusBarUtils.setStatusBarColor(this,Color.TRANSPARENT,false);
         ButterKnife.bind(this);
         vibrator = (Vibrator) this.getSystemService(this.VIBRATOR_SERVICE);
 
@@ -350,8 +350,7 @@ public class RunningNaviActivity extends BaseActivity implements AMapNaviViewLis
         naviFinishButton.setOnLongClickListener(onLongClickListener);
         naviLengthText.setOnClickListener(onClickListener);
 
-        chronometer.setFormat("%s");
-        chronometer.start();
+
 
 
         /**
@@ -525,7 +524,6 @@ public class RunningNaviActivity extends BaseActivity implements AMapNaviViewLis
             @Override
             public void done(List<UserInfo> list, BmobException e) {
                 if (e == null) {
-
                     length = list.get(0).getTotalLength();
                     time = list.get(0).getTotalTime();
                     achievement = list.get(0).getAchievement();
@@ -579,6 +577,12 @@ public class RunningNaviActivity extends BaseActivity implements AMapNaviViewLis
     @Override
     public void onStartNavi(int i) {
         this.startTime = System.currentTimeMillis();
+        naviFinishButton.setBackgroundResource(R.drawable.selector_primary_btn);
+        chronometer.setFormat("%s");
+        chronometer.start();
+        naviFinishButton.setText("暂停(长按结束)");
+        naviFinishButton.setEnabled(true);
+
     }
 
     @Override
@@ -653,6 +657,7 @@ public class RunningNaviActivity extends BaseActivity implements AMapNaviViewLis
         routeOverLay.addToMap(descriptors, path.getWayPointIndex());
         return routeOverLay;
     }
+
 
     @Override
     public void onStopSpeaking() {

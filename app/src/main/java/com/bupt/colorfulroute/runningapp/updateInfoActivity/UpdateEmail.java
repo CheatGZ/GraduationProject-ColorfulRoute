@@ -11,11 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bupt.colorfulroute.R;
-import com.bupt.colorfulroute.util.BaseActivity;
 import com.bupt.colorfulroute.runningapp.entity.UserInfo;
 import com.bupt.colorfulroute.runningapp.uicomponent.AlertMessage;
-import com.bupt.colorfulroute.runningapp.uiutils.StatusBarUtils;
+import com.bupt.colorfulroute.util.BaseActivity;
 import com.bupt.colorfulroute.util.CheckFormat;
+import com.bupt.colorfulroute.util.ShowKeyBoard;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,8 +25,14 @@ import cn.bmob.v3.listener.UpdateListener;
 
 public class UpdateEmail extends BaseActivity {
     UpdateEmail self = this;
-
-
+    @BindView(R.id.back_button)
+    ImageView backButton;
+    @BindView(R.id.title_text)
+    TextView titleText;
+    @BindView(R.id.right_button)
+    ImageView rightButton;
+    @BindView(R.id.input_text)
+    EditText inputText;
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -36,7 +42,7 @@ public class UpdateEmail extends BaseActivity {
                     break;
                 case R.id.right_layout:
                     if (inputText.getText().toString().equals("") || !CheckFormat.isEmail(inputText.getText().toString())) {
-                        alert(new AlertMessage("请输入有效值！", ""));
+                        alert(new AlertMessage("提交失败！", "请输入有效值！"));
                     } else {
                         SharedPreferences sp = self.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
                         String objectId = sp.getString("objectId", "");
@@ -59,14 +65,6 @@ public class UpdateEmail extends BaseActivity {
             }
         }
     };
-    @BindView(R.id.back_button)
-    ImageView backButton;
-    @BindView(R.id.title_text)
-    TextView titleText;
-    @BindView(R.id.right_button)
-    ImageView rightButton;
-    @BindView(R.id.input_text)
-    EditText inputText;
     @BindView(R.id.left_layout)
     LinearLayout leftLayout;
     @BindView(R.id.right_layout)
@@ -86,6 +84,7 @@ public class UpdateEmail extends BaseActivity {
         titleText.setText("邮  箱");
         rightButton.setImageResource(R.mipmap.confirm);
 
+        ShowKeyBoard.delayShowSoftKeyBoard(inputText);
         leftLayout.setOnClickListener(onClickListener);
         rightLayout.setOnClickListener(onClickListener);
     }

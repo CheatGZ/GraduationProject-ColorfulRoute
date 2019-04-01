@@ -1,125 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/achievement_dialog"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:background="@drawable/bg_white"
-    android:gravity="center_vertical"
+    android:background="@drawable/bg_divider_light"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:layout_weight="1"
-        android:background="@drawable/bg_primary_light"
+        android:background="@drawable/bg_divider_light"
         android:gravity="center"
         android:padding="10dp">
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/image_achievement_show"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:roundedCornerRadius="5dp"
-            fresco:actualImageScaleType="focusCrop"
             app:roundingBorderColor="@color/grid_divider"
-            app:roundingBorderWidth="2dp" />
+            app:roundingBorderWidth="4dp"
+            fresco:actualImageScaleType="focusCrop"
+            fresco:viewAspectRatio="1" />
 
     </LinearLayout>
 
 
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:columnCount="2"
+        android:rowCount="4">
 
-        <GridLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:rowCount="4"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp">
+            android:text="徽       章: "
+            android:textColor="@color/primary_text"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="徽       章: "
-                android:textColor="@color/primary_text"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/text_achievement_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:text="\???"
+            android:textColor="@color/color_red_dark"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/text_achievement_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="fill_horizontal"
-                android:text="\???"
-                android:textColor="@color/color_red_dark"
-                android:textStyle="bold"
-                android:textSize="12sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="描       述: "
+            android:textColor="@color/primary_text"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="描       述: "
-                android:textColor="@color/primary_text"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/text_achievement_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:text="\???"
+            android:textColor="@color/primary_light"
+            android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/text_achievement_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="fill_horizontal"
-                android:text="\???"
-                android:textColor="@color/secondary_text"
-                android:textSize="12sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="解锁条件: "
+            android:textColor="@color/primary_text"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="解锁条件: "
-                android:textColor="@color/primary_text"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/text_achievement_condition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:text="\???"
+            android:textColor="@color/primary_light"
+            android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/text_achievement_condition"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="fill_horizontal"
-                android:text="\???"
-                android:textColor="@color/secondary_text"
-                android:textSize="12sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="解锁日期: "
+            android:textColor="@color/primary_text"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="解锁日期: "
-                android:textColor="@color/primary_text"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/text_achievement_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="fill_horizontal"
-                android:text="\???"
-                android:textColor="@color/secondary_text"
-                android:textSize="12sp"
-                tools:ignore="InvalidId" />
-        </GridLayout>
+        <TextView
+            android:id="@+id/text_achievement_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:text="\???"
+            android:textColor="@color/primary_light"
+            android:textSize="12sp"
+            tools:ignore="InvalidId" />
+    </GridLayout>
 
     <Button
         android:id="@+id/btn_achievement_show"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/selector_primary_btn"
         android:text="显  示"
         android:textColor="@color/icons"

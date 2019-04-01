@@ -12,10 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bupt.colorfulroute.R;
-import com.bupt.colorfulroute.util.BaseActivity;
 import com.bupt.colorfulroute.runningapp.entity.UserInfo;
 import com.bupt.colorfulroute.runningapp.uicomponent.AlertMessage;
-import com.bupt.colorfulroute.runningapp.uiutils.StatusBarUtils;
+import com.bupt.colorfulroute.util.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,7 +58,7 @@ public class UpdateGender extends BaseActivity {
                     String objectId = sp.getString("objectId", "");
 
                     if (!none.isChecked() && !male.isChecked() && !female.isChecked() && !other.isChecked()) {
-                        alert(new AlertMessage("请选择有效项！", ""));
+                        alert(new AlertMessage("提交失败！", "请选择有效项！"));
                     } else {
                         userInfo.update(objectId, new UpdateListener() {
                             @Override

@@ -2,6 +2,7 @@ package com.bupt.colorfulroute.runningapp.uiutils;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
@@ -10,10 +11,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.bupt.colorfulroute.R;
-import com.facebook.drawee.view.SimpleDraweeView;
 
 
 public class DescriptionDialog extends Dialog {
@@ -64,7 +63,6 @@ public class DescriptionDialog extends Dialog {
         p.width = (int) (d.getWidth() * 0.8); // 宽度设置为屏幕的0.5
         dialogWindow.setAttributes(p);
         dialogWindow.setBackgroundDrawableResource(R.drawable.bg_primary_light);
-
         // 为按钮绑定点击事件监听器
         btnSavePop.setOnClickListener(mClickListener);
 

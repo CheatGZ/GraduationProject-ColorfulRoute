@@ -8,8 +8,6 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.bmob.v3.Bmob;
-
 /**
  * @author CheatGZ
  * @date 2019/2/28.

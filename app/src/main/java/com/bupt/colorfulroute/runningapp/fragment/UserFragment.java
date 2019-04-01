@@ -5,15 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,23 +20,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bupt.colorfulroute.R;
+import com.bupt.colorfulroute.runningapp.activity.AchievementActivity;
 import com.bupt.colorfulroute.runningapp.activity.LoginActivity;
 import com.bupt.colorfulroute.runningapp.activity.MainActivity;
-import com.bupt.colorfulroute.runningapp.adapter.AchievementAdapter;
-import com.bupt.colorfulroute.runningapp.entity.Achievement;
 import com.bupt.colorfulroute.runningapp.entity.UserInfo;
-import com.bupt.colorfulroute.runningapp.uiutils.AchievementDialog;
 import com.bupt.colorfulroute.runningapp.uiutils.DescriptionDialog;
 import com.bupt.colorfulroute.runningapp.uiutils.LogoutDialog;
-import com.bupt.colorfulroute.runningapp.uiutils.ScreenUtils;
-import com.bupt.colorfulroute.runningapp.uiutils.ShadowDrawable;
-import com.bupt.colorfulroute.runningapp.uiutils.StatusBarUtils;
 import com.bupt.colorfulroute.runningapp.updateInfoActivity.UpdateInfoActivity;
+import com.bupt.colorfulroute.util.AppVersion;
+import com.bupt.colorfulroute.util.ShowKeyBoard;
 import com.bupt.colorfulroute.util.ToastUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,35 +63,31 @@ public class UserFragment extends Fragment {
     LinearLayout layoutInfo;
     @BindView(R.id.layout_achievement)
     LinearLayout layoutAchievement;
-
-    SimpleDraweeView avatarView;
-    TextView descriptionText;
-    TextView userNameText;
-    TextView achievementShow;
-
     @BindView(R.id.image_achievement_show)
     ImageView imageAchievementShow;
-    @BindView(R.id.achievement_rv)
-    RecyclerView achievementRv;
-    SharedPreferences sp;
-    @BindView(R.id.divider)
-    View divider;
     @BindView(R.id.title_bar)
     LinearLayout titleBar;
     @BindView(R.id.view_one)
     View viewOne;
     Unbinder unbinder;
+    SharedPreferences sp;
+    SimpleDraweeView avatarView;
+    TextView descriptionText;
+    TextView userNameText;
+    @BindView(R.id.right_layout)
+    LinearLayout rightLayout;
+    @BindView(R.id.version_code)
+    TextView versionCode;
+    @BindView(R.id.version_name)
+    TextView versionName;
 
 
     private Bitmap avatar;
     private String name;
     private String icon;//微博头像地址
     private String description;//简介
-    private String achievement;
     private DescriptionDialog descriptionDialog;
     private LogoutDialog logoutDialog;
-    private AchievementDialog achievementDialog;
-    private boolean flag_achievement = false;//判断成就信息是显示true/隐藏false
     private Message msg = null;
 
 
@@ -135,23 +122,21 @@ public class UserFragment extends Fragment {
             String objectId = sp.getString("objectId", "");
             UserInfo userInfo = new UserInfo();
             switch (v.getId()) {
-                case R.id.layout_info:
-                    startActivity(new Intent(getContext(), UpdateInfoActivity.class));
-                    break;
                 case R.id.avatar_view:
                     Intent intent = new Intent(Intent.ACTION_PICK, null);
                     intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
                     startActivityForResult(intent, GET_PIC_FROM_PHOTOS);
                     break;
-                case R.id.right_button:
-                    showLogoutDialog();
+                case R.id.layout_info:
+                    startActivity(new Intent(getContext(), UpdateInfoActivity.class));
                     break;
-                case R.id.description_layout:
+                case R.id.layout_achievement:
+                    Intent intent1 = new Intent(getActivity(), AchievementActivity.class);
+                    startActivity(intent1);
+                    break;
+                case R.id.description_edit:
                     showEditDialog();
                     break;
-//                case R.id.achievement_item:
-//                    showAchievementDialog();
-//                    break;
                 case R.id.btn_save_pop:
                     userInfo.setDescription(descriptionDialog.descriptionEditText.getText().toString());
                     userInfo.update(objectId, new UpdateListener() {
@@ -166,6 +151,9 @@ public class UserFragment extends Fragment {
                         }
                     });
                     break;
+                case R.id.right_layout:
+                    showLogoutDialog();
+                    break;
                 case R.id.btn_app_out:
                     MainActivity mainActivity = new MainActivity();
                     mainActivity.removeActivity();
@@ -178,61 +166,11 @@ public class UserFragment extends Fragment {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                     getActivity().finish();
                     break;
-                case R.id.layout_achievement:
-                    if (!flag_achievement) {
-                        imageAchievementShow.setBackgroundResource(R.mipmap.achievement_show);
-                        personInfoRel.setVisibility(View.GONE);
-                        layoutInfo.setVisibility(View.GONE);
-                        divider.setVisibility(View.GONE);
-                        viewOne.setVisibility(View.GONE);
-                        achievementRv.setVisibility(View.VISIBLE);
-                        titleBar.setClickable(true);
-                        achievementShow.setText("佩戴徽章: " + achievement);
-                        flag_achievement = true;
-                    } else {
-                        imageAchievementShow.setBackgroundResource(R.mipmap.go);
-                        personInfoRel.setVisibility(View.VISIBLE);
-                        layoutInfo.setVisibility(View.VISIBLE);
-                        divider.setVisibility(View.VISIBLE);
-                        viewOne.setVisibility(View.VISIBLE);
-                        achievementRv.setVisibility(View.INVISIBLE);
-                        achievementShow.setText("运动徽章");
-                        titleBar.setClickable(false);
-                        flag_achievement = false;
-                    }
-                    break;
-                case R.id.btn_achievement_show:
-                    userInfo.setTitle(achievementDialog.achTitle.getText().toString());
-                    userInfo.update(objectId, new UpdateListener() {
-                        @Override
-                        public void done(BmobException e) {
-                            if (e == null) {
-                                descriptionDialog.dismiss();
-                                initUserinfo();
-                            } else {
-                                ToastUtil.show(getActivity(), "提交失败，请重试！");
-                            }
-                        }
-                    });
-                    break;
-                case R.id.title_bar:
-                    imageAchievementShow.setBackgroundResource(R.mipmap.go);
-                    personInfoRel.setVisibility(View.VISIBLE);
-                    layoutInfo.setVisibility(View.VISIBLE);
-                    divider.setVisibility(View.VISIBLE);
-                    achievementRv.setVisibility(View.INVISIBLE);
-                    achievementShow.setText("成就");
-                    titleBar.setClickable(false);
-                    layoutAchievement.setBackgroundColor(getActivity().getResources().getColor(R.color.icons));
-                    flag_achievement = false;
-                    break;
                 default:
                     break;
             }
         }
     };
-    private List<Achievement> list = new ArrayList<>();
-    private int mPosition;//记录recycleerview点击的position
 
     public static UserFragment newInstance() {
         UserFragment fragment = new UserFragment();
@@ -245,62 +183,20 @@ public class UserFragment extends Fragment {
         avatarView = view.findViewById(R.id.avatar_view);
         descriptionText = view.findViewById(R.id.description_text);
         userNameText = view.findViewById(R.id.user_name_text);
-        achievementShow = view.findViewById(R.id.achievement_show);
         unbinder = ButterKnife.bind(this, view);
 
-//        StatusBarUtils.setStatusBarColor(getActivity(), Color.TRANSPARENT,false);
         titleText.setText("个人中心");
         rightButton.setBackgroundResource(R.mipmap.log_out);
+        versionCode.setText("Version "+AppVersion.packageName(getActivity()));
+        versionName.setText("卉跑 RunRoute");
 
-//        ShadowDrawable.setShadowDrawable(personInfoRel, ShadowDrawable.SHAPE_ROUND, 0xffffff, ScreenUtils.dp2px(getContext(), 6)
-//                , 0x66305CDD, ScreenUtils.dp2px(getContext(), 8), ScreenUtils.dp2px(getContext(), 0), ScreenUtils.dp2px(getContext(), 3));
-
-        //适配器
-        AchievementAdapter achievementAdapter = new AchievementAdapter<Achievement>(list) {
-            @Override
-            public int getLayoutId(int viewType) {
-                return R.layout.layout_achievement_item;
-            }
-
-            @Override
-            public void convert(VH holder, Achievement data, int position) {
-                holder.setImage(R.id.achievement_image, list.get(position).getIcon());
-                holder.setText(R.id.achievement_title, list.get(position).getTitle());
-                holder.setText(R.id.condition_text, list.get(position).getCondition());
-                holder.setTime(R.id.time_achieved, list.get(position).getTimeAchieved());
-                if (list.get(position).getTimeAchieved() == 0)
-                    holder.setUnShow(R.id.achievement_image,
-                            R.id.achievement_title,
-                            R.id.achievement_show_layout,
-                            R.id.achievement_item,
-                            list.get(position).getUnIcon(),
-                            false);
-            }
-
-        };
-        achievementAdapter.setOnItemClickListener(new AchievementAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                mPosition = position;
-                showAchievementDialog();
-            }
-        });
-        achievementRv.setLayoutManager(new LinearLayoutManager(getContext()));
-        achievementRv.setAdapter(achievementAdapter);
-
-
-        titleBar.setClickable(false);
         avatarView.setClickable(false);
-        titleBar.setOnClickListener(onClickListener);
 //        avatarView.setOnClickListener(onClickListener);
-        descriptionLayout.setOnClickListener(onClickListener);
+        descriptionEdit.setOnClickListener(onClickListener);
         layoutInfo.setOnClickListener(onClickListener);
-        rightButton.setOnClickListener(onClickListener);
+        rightLayout.setOnClickListener(onClickListener);
         layoutAchievement.setOnClickListener(onClickListener);
         initUserinfo();
-
-        initAchievement();
-
         return view;
     }
 
@@ -315,27 +211,9 @@ public class UserFragment extends Fragment {
                     name = userInfo.getName();
                     icon = userInfo.getIcon();
                     description = userInfo.getDescription();
-                    achievement = userInfo.getTitle();
                     msg = new Message();
                     msg.what = 1;
                     handler.sendMessage(msg);
-                }
-            }
-        });
-    }
-
-    private void initAchievement() {
-        sp = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        String objectId = sp.getString("objectId", "");
-        BmobQuery<UserInfo> bmobQuery = new BmobQuery<>();
-        bmobQuery.getObject(objectId, new QueryListener<UserInfo>() {
-            @Override
-            public void done(UserInfo userInfo, BmobException e) {
-                if (e == null) {
-                    list.clear();
-                    list.addAll(userInfo.getAchievement());
-                } else {
-                    System.out.println("Bmob error" + e);
                 }
             }
         });
@@ -347,16 +225,12 @@ public class UserFragment extends Fragment {
         logoutDialog.show();
     }
 
-    public void showAchievementDialog() {
-
-        //TODO 实时监测后台成就信息，并返回前端
-        achievementDialog = new AchievementDialog(getActivity(), onClickListener, list.get(mPosition), mPosition);
-        achievementDialog.show();
-    }
-
     public void showEditDialog() {
         descriptionDialog = new DescriptionDialog(getActivity(), onClickListener);
         descriptionDialog.show();
+        descriptionDialog.descriptionEditText.setText(descriptionText.getText().toString().substring(3));
+        descriptionDialog.descriptionEditText.setSelection(descriptionText.getText().toString().substring(3).length());
+        ShowKeyBoard.delayShowSoftKeyBoard(descriptionDialog.descriptionEditText);
     }
 
     @Override
@@ -364,7 +238,6 @@ public class UserFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
-
 
     @Override
     public void onResume() {

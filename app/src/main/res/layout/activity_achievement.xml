@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/icons"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_bar" />
+
+    <TextView
+        android:id="@+id/achievement_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/achievement_title_bar"
+        android:text="当前徽章:  无"
+        android:gravity="bottom"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:paddingTop="35dp"
+        android:paddingBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="1dp"
+        android:elevation="5dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/icons"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/achievement_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp" />
+</LinearLayout>

@@ -1,7 +1,5 @@
 package com.bupt.colorfulroute.runningapp.entity;
 
-import android.graphics.Bitmap;
-
 public class Achievement {
     private Integer titleId;//称号ID
     private String title;

@@ -28,7 +28,7 @@ public interface WeiboConstants {
     /**
      * 当前 DEMO 应用的 APP_KEY，第三方应用应该使用自己的 APP_KEY 替换该 APP_KEY
      */
-    public static final String APP_KEY = "599491966";
+    String APP_KEY = "599491966";
 
     /**
      * 当前 DEMO 应用的回调页，第三方应用可以使用自己的回调页。
@@ -39,7 +39,7 @@ public interface WeiboConstants {
      * 建议使用默认回调页：https://api.weibo.com/oauth2/default.html
      * </p>
      */
-    public static final String REDIRECT_URL = "https://api.weibo.com/oauth2/default.html";
+    String REDIRECT_URL = "https://api.weibo.com/oauth2/default.html";
 
     /**
      * Scope 是 OAuth2.0 授权机制中 authorize 接口的一个参数。通过 Scope，平台将开放更多的微博
@@ -54,7 +54,7 @@ public interface WeiboConstants {
      * 有关哪些 OpenAPI 需要权限申请，请查看：http://open.weibo.com/wiki/%E5%BE%AE%E5%8D%9AAPI
      * 关于 Scope 概念及注意事项，请查看：http://open.weibo.com/wiki/Scope
      */
-    public static final String SCOPE =
+    String SCOPE =
             "email,direct_messages_read,direct_messages_write,"
                     + "friendships_groups_read,friendships_groups_write,statuses_to_me_read,"
                     + "follow_app_official_microblog," + "invitation_write";
