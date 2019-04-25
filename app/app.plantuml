@@ -1,0 +1,913 @@
+@startuml
+
+title __APP's Class Diagram__\n
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      abstract class AaseActivity {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.entity {
+      class Achievement {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class AchievementActivity {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class AchievementActivity_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.adapter {
+      abstract class AchievementAdapter {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uiutils {
+      class AchievementDialog {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uicomponent {
+      class AlertMessage {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class AnalysisActivity {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class AnalysisActivity_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class AppVersion {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      abstract class BaseActivity {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class BaseApplication {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    class BuildConfig {
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class CheckFormat {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uicomponent {
+      class DashBoardProgressView {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uiutils {
+      class DescriptionDialog {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    class ExampleInstrumentedTest {
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class FreeRunActivity {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class FreeRunActivity_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.adapter {
+      abstract class HistoryAdapter {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class HistoryDetailActivity {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class HistoryDetailActivity_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.fragment {
+      class HistoryFragment {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.fragment {
+      class HistoryFragment_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.struct {
+      class HistoryItem {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uicomponent {
+      package com.bupt.colorfulroute.runningapp.uicomponent.scaleview {
+        class HorizontalScaleView {
+        }
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      interface ICallBack {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class ImageToUri {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class JudgeNetAndGPS {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.runnerlib {
+      class LatLngCalculate {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.tools {
+      class LengthBalance {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class LoginActivity {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class LoginActivity_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uiutils {
+      class LogoutDialog {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class MainActivity {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class MainActivity_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.fragment {
+      class MainFragment {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.fragment {
+      class MainFragment_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.tools {
+      class MapScale {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class MyMap {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      abstract class OnMultiClickListener {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uicomponent {
+      package com.bupt.colorfulroute.runningapp.uicomponent.scaleview {
+        interface OnValueChangeListener {
+        }
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uicomponent {
+      package com.bupt.colorfulroute.runningapp.uicomponent.overFlyingView {
+        class OverFlyingLayoutManager {
+        }
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.entity {
+      class PositionEntity {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.adapter {
+      class RecycleItemTouchHelper {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class RecyclerViewVelocity {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.tools {
+      class ReplanningRoute {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.enums {
+      class ReturnResults {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.struct {
+      class RouteData {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.runnerlib {
+      class RouteGenerate {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.entity {
+      class RouteInfo {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uicomponent {
+      class RouteSchematicDiagramLayout {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class RouteSelectActivity {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class RouteSelectActivity_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.runnerlib {
+      abstract class RunnerRouteSearchListener {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.struct {
+      class RunningData {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class RunningNaviActivity {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class RunningNaviActivity_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uiutils {
+      class ScreenUtils {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uicomponent {
+      class ScrollTextView {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uiutils {
+      class ShadowDrawable {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class ShowKeyBoard {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uiutils {
+      class SlideBackLayout {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class Splash {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class Splash_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uiutils {
+      class StatusBarUtils {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class ToastUtil {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class TopSmoothScroller {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.updateInfoActivity {
+      class UpdateAge {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.updateInfoActivity {
+      class UpdateAge_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.updateInfoActivity {
+      class UpdateEmail {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.updateInfoActivity {
+      class UpdateEmail_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.updateInfoActivity {
+      class UpdateGender {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.updateInfoActivity {
+      class UpdateGender_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.updateInfoActivity {
+      class UpdateHeight {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.updateInfoActivity {
+      class UpdateHeight_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.updateInfoActivity {
+      class UpdateInfoActivity {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.updateInfoActivity {
+      class UpdateInfoActivity_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.updateInfoActivity {
+      class UpdateName {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.updateInfoActivity {
+      class UpdateName_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.updateInfoActivity {
+      class UpdatePhone {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.updateInfoActivity {
+      class UpdatePhone_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.updateInfoActivity {
+      class UpdateWeight {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.updateInfoActivity {
+      class UpdateWeight_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.fragment {
+      class UserFragment {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.fragment {
+      class UserFragment_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.entity {
+      class UserInfo {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uicomponent {
+      package com.bupt.colorfulroute.runningapp.uicomponent.scaleview {
+        class VerticalScaleView {
+        }
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class VicinityActivity {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class VicinityActivity_ViewBinding {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.adapter {
+      abstract class VicinityAdapter {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class WbAuthUtils {
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      interface WeiboConstants {
+      }
+    }
+  }
+  
+
+  AaseActivity -up-|> AppCompatActivity
+  AaseActivity o-- BaseApplication : application
+  AaseActivity o-- AaseActivity : oContext
+  AchievementActivity -up-|> BaseActivity
+  AchievementActivity o-- AchievementDialog : achievementDialog
+  AchievementActivity_ViewBinding -up-|> Unbinder
+  AchievementActivity_ViewBinding o-- AchievementActivity : target
+  AchievementAdapter -up-|> Adapter
+  AchievementAdapter o-- OnItemClickListener : mOnItemClickListener
+  AchievementDialog -up-|> Dialog
+  AchievementDialog o-- Achievement : mAchievement
+  AnalysisActivity -up-|> BaseActivity
+  AnalysisActivity o-- UserInfo : userInfo1
+  AnalysisActivity_ViewBinding -up-|> Unbinder
+  AnalysisActivity_ViewBinding o-- AnalysisActivity : target
+  BaseActivity -up-|> AppCompatActivity
+  BaseActivity o-- BaseApplication : application
+  BaseActivity o-- BaseActivity : oContext
+  BaseActivity o-- SlideBackLayout : mSlideBackLayout
+  BaseApplication -up-|> Application
+  DashBoardProgressView -up-|> FrameLayout
+  DashBoardProgressView o-- PointView : pointView
+  DashBoardProgressView o-- ScoreTextView : scoreTextView
+  DashBoardProgressView o-- DashBoardView : dashBoardView
+  DescriptionDialog -up-|> Dialog
+  FreeRunActivity -up-|> BaseActivity
+  FreeRunActivity_ViewBinding -up-|> Unbinder
+  FreeRunActivity_ViewBinding o-- FreeRunActivity : target
+  HistoryAdapter -up-|> ItemTouchHelperCallback
+  HistoryAdapter -up-|> Adapter
+  HistoryAdapter o-- OnItemClickListener : mOnItemClickListener
+  HistoryDetailActivity -up-|> BaseActivity
+  HistoryDetailActivity o-- HistoryDetailActivity : self
+  HistoryDetailActivity o-- RouteInfo : mRouteInfo
+  HistoryDetailActivity_ViewBinding -up-|> Unbinder
+  HistoryDetailActivity_ViewBinding o-- HistoryDetailActivity : target
+  HistoryFragment -up-|> Fragment
+  HistoryFragment o-- HistoryAdapter : mAdapter
+  HistoryFragment o-- UserInfo : userInfo1
+  HistoryFragment o-- OverFlyingLayoutManager : layoutManager
+  HistoryFragment o-- OnMultiClickListener : onMultiClickListener
+  HistoryFragment_ViewBinding -up-|> Unbinder
+  HistoryFragment_ViewBinding o-- HistoryFragment : target
+  HorizontalScaleView -up-|> View
+  HorizontalScaleView o-- OnValueChangeListener : onValueChangeListener
+  LoginActivity -up-|> AppCompatActivity
+  LoginActivity o-- LoginActivity : self
+  LoginActivity o-- WbAuthUtils : utils
+  LoginActivity o-- UserInfo : userInfo1
+  LoginActivity_ViewBinding -up-|> Unbinder
+  LoginActivity_ViewBinding o-- LoginActivity : target
+  LogoutDialog -up-|> Dialog
+  MainActivity -up-|> AaseActivity
+  MainActivity o-- TabPageIndicatorAdapter : mAdpter
+  MainActivity_ViewBinding -up-|> Unbinder
+  MainActivity_ViewBinding o-- MainActivity : target
+  MainFragment -up-|> Fragment
+  MainFragment o-- ScrollTextView : scrollTextView
+  MainFragment o-- VerticalScaleView : lengthScaleView
+  MainFragment o-- DashBoardProgressView : wpbView
+  MainFragment o-- MyMap : mapView
+  MainFragment o-- OnMultiClickListener : onMultiClickListener
+  MainFragment_ViewBinding -up-|> Unbinder
+  MainFragment_ViewBinding o-- MainFragment : target
+  MyMap -up-|> TextureMapView
+  OnMultiClickListener -up-|> OnClickListener
+  OverFlyingLayoutManager -up-|> LayoutManager
+  RecycleItemTouchHelper -up-|> Callback
+  RecycleItemTouchHelper o-- ItemTouchHelperCallback : helperCallback
+  RouteData -up-|> Serializable
+  RouteInfo -up-|> BmobObject
+  RouteSchematicDiagramLayout -up-|> LinearLayout
+  RouteSchematicDiagramLayout o-- RouteSchematicDiagramLayout : self
+  RouteSchematicDiagramLayout o-- RouteData : routeData
+  RouteSelectActivity -up-|> BaseActivity
+  RouteSelectActivity o-- RouteSelectActivity : self
+  RouteSelectActivity o-- RouteSchematicDiagramLayout : selectedDiagram
+  RouteSelectActivity_ViewBinding -up-|> Unbinder
+  RouteSelectActivity_ViewBinding o-- RouteSelectActivity : target
+  RunnerRouteSearchListener -up-|> OnRouteSearchListener
+  RunningData -up-|> Serializable
+  RunningNaviActivity -up-|> AMapNaviViewListener
+  RunningNaviActivity -up-|> AMapNaviListener
+  RunningNaviActivity -up-|> INaviInfoCallback
+  RunningNaviActivity -up-|> WbShareCallback
+  RunningNaviActivity -up-|> BaseActivity
+  RunningNaviActivity o-- RunningData : runningData
+  RunningNaviActivity o-- RunningNaviActivity : self
+  RunningNaviActivity o-- RouteData : routeData
+  RunningNaviActivity_ViewBinding -up-|> Unbinder
+  RunningNaviActivity_ViewBinding o-- RunningNaviActivity : target
+  ScrollTextView -up-|> LinearLayout
+  ShadowDrawable -up-|> Drawable
+  SlideBackLayout -up-|> FrameLayout
+  Splash -up-|> AppCompatActivity
+  Splash o-- Splash : self
+  Splash_ViewBinding -up-|> Unbinder
+  Splash_ViewBinding o-- Splash : target
+  TopSmoothScroller -up-|> LinearSmoothScroller
+  UpdateAge -up-|> BaseActivity
+  UpdateAge o-- UpdateAge : self
+  UpdateAge_ViewBinding -up-|> Unbinder
+  UpdateAge_ViewBinding o-- UpdateAge : target
+  UpdateEmail -up-|> BaseActivity
+  UpdateEmail o-- UpdateEmail : self
+  UpdateEmail_ViewBinding -up-|> Unbinder
+  UpdateEmail_ViewBinding o-- UpdateEmail : target
+  UpdateGender -up-|> BaseActivity
+  UpdateGender o-- UpdateGender : self
+  UpdateGender o-- UserInfo : userInfo
+  UpdateGender_ViewBinding -up-|> Unbinder
+  UpdateGender_ViewBinding o-- UpdateGender : target
+  UpdateHeight -up-|> BaseActivity
+  UpdateHeight o-- UpdateHeight : self
+  UpdateHeight_ViewBinding -up-|> Unbinder
+  UpdateHeight_ViewBinding o-- UpdateHeight : target
+  UpdateInfoActivity -up-|> BaseActivity
+  UpdateInfoActivity o-- UpdateInfoActivity : self
+  UpdateInfoActivity o-- OnMultiClickListener : onMultiClickListener
+  UpdateInfoActivity o-- UserInfo : userInfo
+  UpdateInfoActivity_ViewBinding -up-|> Unbinder
+  UpdateInfoActivity_ViewBinding o-- UpdateInfoActivity : target
+  UpdateName -up-|> BaseActivity
+  UpdateName o-- UpdateName : self
+  UpdateName_ViewBinding -up-|> Unbinder
+  UpdateName_ViewBinding o-- UpdateName : target
+  UpdatePhone -up-|> BaseActivity
+  UpdatePhone o-- UpdatePhone : self
+  UpdatePhone o-- SlideBackLayout : mSlideBackLayout
+  UpdatePhone_ViewBinding -up-|> Unbinder
+  UpdatePhone_ViewBinding o-- UpdatePhone : target
+  UpdateWeight -up-|> BaseActivity
+  UpdateWeight o-- UpdateWeight : self
+  UpdateWeight_ViewBinding -up-|> Unbinder
+  UpdateWeight_ViewBinding o-- UpdateWeight : target
+  UserFragment -up-|> Fragment
+  UserFragment o-- DescriptionDialog : descriptionDialog
+  UserFragment o-- LogoutDialog : logoutDialog
+  UserFragment o-- OnMultiClickListener : onMultiClickListener
+  UserFragment_ViewBinding -up-|> Unbinder
+  UserFragment_ViewBinding o-- UserFragment : target
+  UserInfo -up-|> BmobObject
+  VerticalScaleView -up-|> View
+  VerticalScaleView o-- OnValueChangeListener : onValueChangeListener
+  VicinityActivity -up-|> BaseActivity
+  VicinityActivity o-- VicinityAdapter : vicinityAdapter
+  VicinityActivity o-- OnMultiClickListener : onMultiClickListener
+  VicinityActivity_ViewBinding -up-|> Unbinder
+  VicinityActivity_ViewBinding o-- VicinityActivity : target
+  VicinityAdapter -up-|> Adapter
+  VicinityAdapter o-- OnItemClickListener : mOnItemClickListener
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

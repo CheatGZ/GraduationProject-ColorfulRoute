@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.bupt.colorfulroute.R;
 import com.bupt.colorfulroute.runningapp.entity.UserInfo;
 import com.bupt.colorfulroute.util.BaseActivity;
+import com.bupt.colorfulroute.util.OnMultiClickListener;
 
 import java.util.List;
 
@@ -28,9 +29,9 @@ import cn.bmob.v3.listener.FindListener;
 public class UpdateInfoActivity extends BaseActivity {
     UpdateInfoActivity self = this;
 
-    View.OnClickListener onClickListener = new View.OnClickListener() {
+    private OnMultiClickListener onMultiClickListener = new OnMultiClickListener() {
         @Override
-        public void onClick(View v) {
+        public void onMultiClick(View v) {
             Intent intent;
             switch (v.getId()) {
                 case R.id.left_layout:
@@ -162,14 +163,14 @@ public class UpdateInfoActivity extends BaseActivity {
         initUserInfo();
 
         //设置监听事件
-        leftLayout.setOnClickListener(onClickListener);
-        nameLayout.setOnClickListener(onClickListener);
-        genderLayout.setOnClickListener(onClickListener);
-        ageLayout.setOnClickListener(onClickListener);
-        heightLayout.setOnClickListener(onClickListener);
-        weightLayout.setOnClickListener(onClickListener);
-        emailLayout.setOnClickListener(onClickListener);
-        phoneLayout.setOnClickListener(onClickListener);
+        leftLayout.setOnClickListener(onMultiClickListener);
+        nameLayout.setOnClickListener(onMultiClickListener);
+        genderLayout.setOnClickListener(onMultiClickListener);
+        ageLayout.setOnClickListener(onMultiClickListener);
+        heightLayout.setOnClickListener(onMultiClickListener);
+        weightLayout.setOnClickListener(onMultiClickListener);
+        emailLayout.setOnClickListener(onMultiClickListener);
+        phoneLayout.setOnClickListener(onMultiClickListener);
     }
 
     private void initUserInfo() {

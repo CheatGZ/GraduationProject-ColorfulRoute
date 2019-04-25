@@ -19,4 +19,8 @@
     <color name="grid_divider">#CFD6EB</color>
     <color name="blue_history_map">#F3F8FE</color>
 
+    <color name="pie_orange">#FFBB33</color>
+    <color name="pie_blue">#33B5E5</color>
+    <color name="pie_red">#FF4444</color>
+
 </resources>

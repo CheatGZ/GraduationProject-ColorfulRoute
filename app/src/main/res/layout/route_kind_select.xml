@@ -7,7 +7,10 @@
     android:padding="5dp"
     android:background="@drawable/bg_white"
     android:gravity="center">
-
+<HorizontalScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none">
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,7 +45,7 @@
             android:background="@drawable/bg_route_kind_selector"
             android:button="@null"
             android:gravity="center"
-            android:text="三叶花"
+            android:text="三瓣花"
             android:textColor="@drawable/text_route_kind_selector"
             android:textSize="10sp"
             android:elevation="5dp"
@@ -60,7 +63,7 @@
             android:background="@drawable/bg_route_kind_selector"
             android:button="@null"
             android:gravity="center"
-            android:text="四叶花"
+            android:text="四瓣花"
             android:textColor="@drawable/text_route_kind_selector"
             android:textSize="10sp"
             android:elevation="5dp"
@@ -78,7 +81,7 @@
             android:background="@drawable/bg_route_kind_selector"
             android:button="@null"
             android:gravity="center"
-            android:text="四叶花Ⅱ型"
+            android:text="四瓣花Ⅱ型"
             android:textColor="@drawable/text_route_kind_selector"
             android:textSize="10sp"
             android:elevation="5dp"
@@ -96,12 +99,11 @@
             android:background="@drawable/bg_route_kind_selector"
             android:button="@null"
             android:gravity="center"
-            android:text="四叶花Ⅲ型"
+            android:text="四瓣花Ⅲ型"
             android:textColor="@drawable/text_route_kind_selector"
             android:textSize="10sp"
             android:elevation="5dp"
             android:layout_margin="3dp"/>
-
-
     </RadioGroup>
+</HorizontalScrollView>
 </LinearLayout>

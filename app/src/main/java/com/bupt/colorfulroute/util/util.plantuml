@@ -1,0 +1,238 @@
+@startuml
+
+title __UTIL's Class Diagram__\n
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      abstract class AaseActivity {
+          # onCreate()
+          + finish()
+          + addActivity()
+          + removeActivity()
+          + removeALLActivity()
+          + showToast()
+          + alert()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class AppVersion {
+          {static} + packageCode()
+          {static} + packageName()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      abstract class BaseActivity {
+          # onCreate()
+          + finish()
+          + addActivity()
+          + removeActivity()
+          + removeALLActivity()
+          + showToast()
+          + alert()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class BaseApplication {
+          - oList : List<Activity>
+          + onCreate()
+          + addActivity_()
+          + removeActivity_()
+          + removeALLActivity_()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class CheckFormat {
+          {static} + isPhone()
+          {static} + isEmail()
+          {static} + timeFormat()
+          {static} + dateFormat()
+          {static} + dateFormat2()
+          {static} + convertStrTimeToLong()
+          {static} + getChronometerSeconds()
+          {static} + getTimeOfWeekStart()
+          {static} + getTimeOfMonthStart()
+          {static} + getTimeOfYearStart()
+          {static} + longToString()
+          {static} + dateToString()
+          {static} + stringToDate()
+          {static} + longToDate()
+          {static} + getbitmap()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      interface ICallBack {
+          {abstract} + onCompleted()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class ImageToUri {
+          {static} + imageTranslateUri()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class JudgeNetAndGPS {
+          {static} + isNetworkAvailable()
+          {static} + isGpsEnabled()
+          {static} + isWifiEnabled()
+          {static} + is4rd()
+          {static} + isWifi()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class MyMap {
+          + MyMap()
+          + MyMap()
+          # getMapFragmentDelegate()
+          + MyMap()
+          + dispatchTouchEvent()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      abstract class OnMultiClickListener {
+          {static} - MIN_CLICK_DELAY_TIME : int
+          {static} - lastClickTime : long
+          {abstract} + onMultiClick()
+          + onClick()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class RecyclerViewVelocity {
+          {static} + setMaxFlingVelocity()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class ShowKeyBoard {
+          {static} + delayShowSoftKeyBoard()
+          {static} + showSoftKeyBoard()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class ToastUtil {
+          {static} + show()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class TopSmoothScroller {
+          + TopSmoothScroller()
+          + getHorizontalSnapPreference()
+          + getVerticalSnapPreference()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      class WbAuthUtils {
+          {static} - TAG : String
+          {static} - WEIBO_USERINFO_URL : String
+          {static} - mAccessToken : Oauth2AccessToken
+          {static} - listener : onSuccessListener
+          {static} + startSinaWeiBo()
+          {static} - getSinaWeiBoInfo()
+          + setListener()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      interface onSuccessListener {
+          {abstract} + onSuccess()
+          {abstract} + onFailure()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.util {
+      interface WeiboConstants {
+          {static} + APP_KEY : String
+          {static} + REDIRECT_URL : String
+          {static} + SCOPE : String
+      }
+    }
+  }
+  
+
+  AaseActivity -up-|> AppCompatActivity
+  AaseActivity o-- BaseApplication : application
+  AaseActivity o-- AaseActivity : oContext
+  HostCallbacks -up-|> FragmentHostCallback
+  BaseActivity -up-|> AppCompatActivity
+  BaseActivity o-- BaseApplication : application
+  BaseActivity o-- BaseActivity : oContext
+  BaseActivity o-- SlideBackLayout : mSlideBackLayout
+  HostCallbacks -up-|> FragmentHostCallback
+  BaseApplication -up-|> Application
+  MyMap -up-|> TextureMapView
+  LayoutParams -up-|> MarginLayoutParams
+  MarginLayoutParams -up-|> LayoutParams
+  BaseSavedState -up-|> AbsSavedState
+  OnMultiClickListener -up-|> OnClickListener
+  TopSmoothScroller -up-|> LinearSmoothScroller
+  WbAuthUtils +-down- onSuccessListener
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

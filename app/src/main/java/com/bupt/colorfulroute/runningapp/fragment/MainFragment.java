@@ -3,7 +3,9 @@ package com.bupt.colorfulroute.runningapp.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.constraint.ConstraintLayout;
@@ -25,13 +27,17 @@ import android.widget.TextView;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Marker;
+import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.bupt.colorfulroute.R;
 import com.bupt.colorfulroute.runningapp.activity.FreeRunActivity;
 import com.bupt.colorfulroute.runningapp.activity.MainActivity;
 import com.bupt.colorfulroute.runningapp.activity.RouteSelectActivity;
 import com.bupt.colorfulroute.runningapp.entity.RouteInfo;
+import com.bupt.colorfulroute.runningapp.entity.UserInfo;
 import com.bupt.colorfulroute.runningapp.uicomponent.DashBoardProgressView;
 import com.bupt.colorfulroute.runningapp.uicomponent.ScrollTextView;
 import com.bupt.colorfulroute.runningapp.uicomponent.scaleview.OnValueChangeListener;
@@ -56,6 +62,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobDate;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class MainFragment extends Fragment {
     protected static final float FLIP_DISTANCE = 50;
@@ -86,7 +93,7 @@ public class MainFragment extends Fragment {
             switch (v.getId()) {
                 case R.id.btn_run_start:
                     Vibrator vibrator = (Vibrator) getActivity().getSystemService(getActivity().VIBRATOR_SERVICE);
-                    vibrator.vibrate(250);
+                    vibrator.vibrate(150);
                     Intent intent = new Intent(getActivity(), FreeRunActivity.class);
                     startActivity(intent);
                     break;
@@ -102,6 +109,8 @@ public class MainFragment extends Fragment {
     TextView routeKindBtn;
     @BindView(R.id.my_location)
     LinearLayout myLocation;
+    @BindView(R.id.layout_progress_view)
+    LinearLayout layoutProgressView;
     private TextView btnRunStart;
     private DashBoardProgressView wpbView;
     private RadioButton[] rb = new RadioButton[5];
@@ -127,7 +136,7 @@ public class MainFragment extends Fragment {
                     rb[1].setChecked(true);
                     editor.putInt("RouteKind", 1);
                     editor.apply();//提交修改
-                    titleText.setText("三叶花");
+                    titleText.setText("三瓣花");
                     popupWindow.dismiss();
                     break;
                 case R.id.bt3:
@@ -135,7 +144,7 @@ public class MainFragment extends Fragment {
                     rb[2].setChecked(true);
                     editor.putInt("RouteKind", 2);
                     editor.apply();//提交修改
-                    titleText.setText("四叶花");
+                    titleText.setText("四瓣花");
                     popupWindow.dismiss();
                     break;
                 case R.id.bt4:
@@ -143,7 +152,7 @@ public class MainFragment extends Fragment {
                     rb[3].setChecked(true);
                     editor.putInt("RouteKind", 3);
                     editor.apply();//提交修改
-                    titleText.setText("四叶花Ⅱ型");
+                    titleText.setText("四叶瓣Ⅱ型");
                     popupWindow.dismiss();
                     break;
                 case R.id.bt5:
@@ -151,7 +160,7 @@ public class MainFragment extends Fragment {
                     rb[4].setChecked(true);
                     editor.putInt("RouteKind", 4);
                     editor.apply();//提交修改
-                    titleText.setText("四叶花Ⅲ型");
+                    titleText.setText("四叶瓣Ⅲ型");
                     popupWindow.dismiss();
                     break;
                 default:
@@ -166,7 +175,7 @@ public class MainFragment extends Fragment {
     private MyMap mapView;
     private MyLocationStyle myLocationStyle;
     private AMap aMap;
-    OnMultiClickListener onMultiClickListener = new OnMultiClickListener() {
+    private OnMultiClickListener onMultiClickListener = new OnMultiClickListener() {
         @Override
         public void onMultiClick(View v) {
             btnRunStart.setEnabled(false);
@@ -179,6 +188,8 @@ public class MainFragment extends Fragment {
             startActivity(intent);
         }
     };
+    private List<Marker> markers = new ArrayList<>();//用户坐标点
+    private MarkerOptions markerOptions;//定位点属性
     private int flag_map_show = 0;//默认显示地图
     private boolean flag_scale = false;//默认不显示刻度尺
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -245,7 +256,7 @@ public class MainFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         mapView = view.findViewById(R.id.main_map_view);
         wpbView = view.findViewById(R.id.wpb_progress_view);
-        btnRunStart=view.findViewById(R.id.btn_run_start);
+        btnRunStart = view.findViewById(R.id.btn_run_start);
         SpannableString btn_text;
         btn_text = new SpannableString("规划跑 3.0 km");
         btn_text.setSpan(new AbsoluteSizeSpan(18, true), 4, 7, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
@@ -335,7 +346,8 @@ public class MainFragment extends Fragment {
         String start;
         BmobDate bmobCreatedAtDate = null;
         try {
-            start = CheckFormat.longToString(monthStart, "yyyy-MM-dd HH:mm:ss");
+            start = CheckFormat.longToString(monthStart, "0." +
+                    "yyyy-MM-dd HH:mm:ss");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date createdAtDate = sdf.parse(start);
             bmobCreatedAtDate = new BmobDate(createdAtDate);
@@ -377,7 +389,7 @@ public class MainFragment extends Fragment {
         scrollText.add("· 点击上方\"卉跑\"，选择跑步路径形状!");
         scrollText.add("· 点击下方蓝色地图，切换地图视图!");
         scrollText.add("· 点击下方红色直尺，选择跑步距离!");
-        scrollText.add("· 点击下方黑色定位，进行定位!");
+        scrollText.add("· 点击下方白色定位，进行定位!");
         scrollText.add("· 跑步记录右滑删除，删除后无法恢复!");
         scrollTextView.setList(scrollText);
         scrollTextView.startScroll();
@@ -398,7 +410,6 @@ public class MainFragment extends Fragment {
                 } else {
                     zoom = 20 - value;
                 }
-//                initMap();
                 aMap.moveCamera(CameraUpdateFactory.zoomTo(zoom));
             }
         });
@@ -412,16 +423,16 @@ public class MainFragment extends Fragment {
                 titleText.setText("圆形");
                 break;
             case 1:
-                titleText.setText("三叶花");
+                titleText.setText("三瓣花");
                 break;
             case 2:
-                titleText.setText("四叶花");
+                titleText.setText("四瓣花");
                 break;
             case 3:
-                titleText.setText("四叶花Ⅱ型");
+                titleText.setText("四瓣花Ⅱ型");
                 break;
             case 4:
-                titleText.setText("四叶花Ⅲ型");
+                titleText.setText("四瓣花Ⅲ型");
                 break;
         }
     }
@@ -461,6 +472,79 @@ public class MainFragment extends Fragment {
         aMap.getUiSettings().setCompassEnabled(false);
         aMap.getUiSettings().setAllGesturesEnabled(true);//允许手势
         aMap.getUiSettings().setZoomControlsEnabled(false);
+
+        //实时上传我的定位信息->社交定位功能需要使用
+        aMap.setOnMyLocationChangeListener(new AMap.OnMyLocationChangeListener() {
+            @Override
+            public void onMyLocationChange(Location location) {
+                SharedPreferences sp = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                String objectId = sp.getString("objectId", "");
+                //上传定位信息
+                List<Double> myLocation = new ArrayList<>();
+                myLocation.clear();
+                myLocation.add(location.getLatitude());
+                myLocation.add(location.getLongitude());
+                UserInfo userInfo = new UserInfo();
+                userInfo.setLocation(myLocation);
+                userInfo.setLogInTime(System.currentTimeMillis());
+                userInfo.update(objectId, new UpdateListener() {
+                    @Override
+                    public void done(BmobException e) {
+
+                    }
+                });
+            }
+        });
+
+        aMap.setOnMapTouchListener(new AMap.OnMapTouchListener() {
+            @Override
+            public void onTouch(MotionEvent motionEvent) {
+                for (int i = 0; i < markers.size(); i++) {
+                    markers.get(i).hideInfoWindow();
+                }
+            }
+        });
+        //地图显示其他用户
+        intiUserMarker();
+    }
+
+    private void intiUserMarker() {
+        //另开子线程地图显示其他用户
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SharedPreferences sp = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                String objectId = sp.getString("objectId", "");
+
+                BmobQuery<UserInfo> query = new BmobQuery<>();
+                query.addWhereNotEqualTo("objectId", objectId);
+                query.findObjects(new FindListener<UserInfo>() {
+                    @Override
+                    public void done(List<UserInfo> list, BmobException e) {
+                        if (e == null) {
+                            List<UserInfo> userLocation = new ArrayList<>();
+                            List<LatLng> latLngs = new ArrayList<>();
+                            for (int i = 0; i < list.size(); i++) {
+
+                                if (list.get(i).getLocation().get(0) - aMap.getMyLocation().getLatitude() < 0.001 && list.get(i).getLocation().get(1) - aMap.getMyLocation().getLongitude() < 0.001) {
+                                    userLocation.add(list.get(i));
+                                }
+                            }
+                            for (int i = 0; i < userLocation.size(); i++) {
+                                latLngs.add(new LatLng(userLocation.get(i).getLocation().get(0), userLocation.get(i).getLocation().get(1)));
+                                markerOptions = new MarkerOptions();
+                                markerOptions.position(latLngs.get(i));
+                                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory
+                                        .decodeResource(getResources(), R.mipmap.user_icon)));
+                                markerOptions.title("徽章: " + userLocation.get(i).getTitle()).snippet(userLocation.get(i).getName());
+                                markerOptions.setFlat(true);
+                                markers.add(aMap.addMarker(markerOptions));
+                            }
+                        }
+                    }
+                });
+            }
+        }).start();
     }
 
     @Override

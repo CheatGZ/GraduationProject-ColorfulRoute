@@ -21,13 +21,16 @@ import android.widget.TextView;
 
 import com.bupt.colorfulroute.R;
 import com.bupt.colorfulroute.runningapp.activity.AchievementActivity;
+import com.bupt.colorfulroute.runningapp.activity.AnalysisActivity;
 import com.bupt.colorfulroute.runningapp.activity.LoginActivity;
 import com.bupt.colorfulroute.runningapp.activity.MainActivity;
+import com.bupt.colorfulroute.runningapp.activity.VicinityActivity;
 import com.bupt.colorfulroute.runningapp.entity.UserInfo;
 import com.bupt.colorfulroute.runningapp.uiutils.DescriptionDialog;
 import com.bupt.colorfulroute.runningapp.uiutils.LogoutDialog;
 import com.bupt.colorfulroute.runningapp.updateInfoActivity.UpdateInfoActivity;
 import com.bupt.colorfulroute.util.AppVersion;
+import com.bupt.colorfulroute.util.OnMultiClickListener;
 import com.bupt.colorfulroute.util.ShowKeyBoard;
 import com.bupt.colorfulroute.util.ToastUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -63,13 +66,10 @@ public class UserFragment extends Fragment {
     LinearLayout layoutInfo;
     @BindView(R.id.layout_achievement)
     LinearLayout layoutAchievement;
-    @BindView(R.id.image_achievement_show)
-    ImageView imageAchievementShow;
     @BindView(R.id.title_bar)
     LinearLayout titleBar;
     @BindView(R.id.view_one)
     View viewOne;
-    Unbinder unbinder;
     SharedPreferences sp;
     SimpleDraweeView avatarView;
     TextView descriptionText;
@@ -80,6 +80,13 @@ public class UserFragment extends Fragment {
     TextView versionCode;
     @BindView(R.id.version_name)
     TextView versionName;
+    @BindView(R.id.layout_analysis)
+    LinearLayout layoutAnalysis;
+    @BindView(R.id.left_layout)
+    LinearLayout leftLayout;
+    @BindView(R.id.layout_vicinity)
+    LinearLayout layoutVicinity;
+    Unbinder unbinder;
 
 
     private Bitmap avatar;
@@ -115,41 +122,15 @@ public class UserFragment extends Fragment {
         }
     };
 
-    private View.OnClickListener onClickListener = new View.OnClickListener() {
+    private View.OnClickListener onClickListener=new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             SharedPreferences sp = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
             String objectId = sp.getString("objectId", "");
             UserInfo userInfo = new UserInfo();
             switch (v.getId()) {
-                case R.id.avatar_view:
-                    Intent intent = new Intent(Intent.ACTION_PICK, null);
-                    intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                    startActivityForResult(intent, GET_PIC_FROM_PHOTOS);
-                    break;
-                case R.id.layout_info:
-                    startActivity(new Intent(getContext(), UpdateInfoActivity.class));
-                    break;
-                case R.id.layout_achievement:
-                    Intent intent1 = new Intent(getActivity(), AchievementActivity.class);
-                    startActivity(intent1);
-                    break;
-                case R.id.description_edit:
-                    showEditDialog();
-                    break;
-                case R.id.btn_save_pop:
-                    userInfo.setDescription(descriptionDialog.descriptionEditText.getText().toString());
-                    userInfo.update(objectId, new UpdateListener() {
-                        @Override
-                        public void done(BmobException e) {
-                            if (e == null) {
-                                descriptionDialog.dismiss();
-                                initUserinfo();
-                            } else {
-                                ToastUtil.show(getActivity(), "提交失败，请重试！");
-                            }
-                        }
-                    });
+                case R.id.left_layout:
+                    ((MainActivity) getActivity()).changeFragment(1);
                     break;
                 case R.id.right_layout:
                     showLogoutDialog();
@@ -165,6 +146,50 @@ public class UserFragment extends Fragment {
                     editor.apply();//提交修改
                     startActivity(new Intent(getContext(), LoginActivity.class));
                     getActivity().finish();
+                    break;
+                case R.id.btn_save_pop:
+                    userInfo.setDescription(descriptionDialog.descriptionEditText.getText().toString());
+                    userInfo.update(objectId, new UpdateListener() {
+                        @Override
+                        public void done(BmobException e) {
+                            if (e == null) {
+                                descriptionDialog.dismiss();
+                                initUserinfo();
+                            } else {
+                                ToastUtil.show(getActivity(), "提交失败，请重试！");
+                            }
+                        }
+                    });
+                    break;
+            }
+        }
+    };
+    private OnMultiClickListener onMultiClickListener = new OnMultiClickListener() {
+        @Override
+        public void onMultiClick(View v) {
+            Intent intent;
+            switch (v.getId()) {
+                case R.id.avatar_view:
+                    intent = new Intent(Intent.ACTION_PICK, null);
+                    intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                    startActivityForResult(intent, GET_PIC_FROM_PHOTOS);
+                    break;
+                case R.id.layout_vicinity:
+                    startActivity(new Intent(getContext(), VicinityActivity.class));
+                    break;
+                case R.id.layout_info:
+                    startActivity(new Intent(getContext(), UpdateInfoActivity.class));
+                    break;
+                case R.id.layout_achievement:
+                    intent = new Intent(getActivity(), AchievementActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.layout_analysis:
+                    intent = new Intent(getActivity(), AnalysisActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.description_edit:
+                    showEditDialog();
                     break;
                 default:
                     break;
@@ -187,15 +212,19 @@ public class UserFragment extends Fragment {
 
         titleText.setText("个人中心");
         rightButton.setBackgroundResource(R.mipmap.log_out);
-        versionCode.setText("Version "+AppVersion.packageName(getActivity()));
+        backButton.setBackgroundResource(R.mipmap.back);
+        versionCode.setText("Version " + AppVersion.packageName(getActivity()));
         versionName.setText("卉跑 RunRoute");
 
         avatarView.setClickable(false);
-//        avatarView.setOnClickListener(onClickListener);
-        descriptionEdit.setOnClickListener(onClickListener);
-        layoutInfo.setOnClickListener(onClickListener);
+//        avatarView.setOnClickListener(onMultiClickListener);
+        descriptionEdit.setOnClickListener(onMultiClickListener);
+        layoutInfo.setOnClickListener(onMultiClickListener);
         rightLayout.setOnClickListener(onClickListener);
-        layoutAchievement.setOnClickListener(onClickListener);
+        layoutVicinity.setOnClickListener(onMultiClickListener);
+        layoutAchievement.setOnClickListener(onMultiClickListener);
+        layoutAnalysis.setOnClickListener(onMultiClickListener);
+        leftLayout.setOnClickListener(onClickListener);
         initUserinfo();
         return view;
     }

@@ -1,6 +1,8 @@
 package com.bupt.colorfulroute.util;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.SystemClock;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -8,6 +10,11 @@ import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
 import android.widget.Chronometer;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -161,5 +168,33 @@ public class CheckFormat {
         String sDateTime = dateToString(dateOld, formatType); // 把date类型的时间转换为string
         Date date = stringToDate(sDateTime, formatType); // 把String类型转换为Date类型
         return date;
+    }
+    /**
+     * 根据一个网络连接(String)获取bitmap图像
+     *
+     * @param imageUri
+     * @return
+     * @throws MalformedURLException
+     */
+    public static Bitmap getbitmap(String imageUri) {
+        // 显示网络上的图片
+        Bitmap bitmap = null;
+        try {
+            URL myFileUrl = new URL(imageUri);
+            HttpURLConnection conn = (HttpURLConnection) myFileUrl
+                    .openConnection();
+            conn.setDoInput(true);
+            conn.connect();
+            InputStream is = conn.getInputStream();
+            bitmap = BitmapFactory.decodeStream(is);
+            is.close();
+        } catch (OutOfMemoryError e) {
+            e.printStackTrace();
+            bitmap = null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            bitmap = null;
+        }
+        return bitmap;
     }
 }

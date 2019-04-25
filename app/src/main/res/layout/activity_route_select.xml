@@ -19,8 +19,7 @@
         android:id="@+id/main_map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/layout_title_bar"
-        android:foreground="@drawable/grdient_primary_light_top" />
+        android:layout_below="@id/layout_title_bar" />
 
     <HorizontalScrollView
         android:layout_width="match_parent"

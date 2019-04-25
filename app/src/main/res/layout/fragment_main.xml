@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_title_bar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,47 +12,50 @@
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary_light"
-        android:orientation="horizontal"
         android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/route_kind_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="卉跑"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/selector_btn_stroke"
+            android:elevation="8dp"
+            android:gravity="center"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:text="卉跑"
             android:textColor="@drawable/selector_text"
             android:textSize="35sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:elevation="8dp"/>
+            android:textStyle="bold" />
 
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp"
-            android:layout_gravity="center_vertical"
             android:background="@color/grid_divider" />
 
         <TextView
             android:id="@+id/title_text"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginStart="10dp"
-            android:layout_weight="8"
             android:textColor="@color/divider_light"
+            android:text="圆形"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/bg_primary_dark"/>
     </LinearLayout>
 
     <View
@@ -71,16 +73,29 @@
         android:gravity="center_vertical"
         android:paddingStart="10dp"
         android:paddingTop="8dp"
-        android:paddingBottom="10dp"
         android:paddingEnd="5dp"
+        android:paddingBottom="10dp"
         app:layout_constraintTop_toBottomOf="@id/view_one" />
 
-    <com.bupt.colorfulroute.runningapp.uicomponent.DashBoardProgressView
-        android:id="@+id/wpb_progress_view"
-        android:layout_width="wrap_content"
-        android:layout_height="125dp"
+    <LinearLayout
+        android:id="@+id/layout_progress_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_primary_dark"
+        android:paddingTop="2.5dp"
+        android:paddingBottom="2.5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scroll_text_view" />
+        app:layout_constraintTop_toBottomOf="@id/scroll_text_view">
+
+        <com.bupt.colorfulroute.runningapp.uicomponent.DashBoardProgressView
+            android:id="@+id/wpb_progress_view"
+            android:layout_width="wrap_content"
+            android:layout_height="125dp"
+            android:layout_marginTop="12.5dp"
+            android:layout_marginBottom="12.5dp"/>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layout_btn"
@@ -90,7 +105,9 @@
         android:animateLayoutChanges="true"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/wpb_progress_view">
+        android:paddingTop="2dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintTop_toBottomOf="@id/layout_progress_view">
 
         <LinearLayout
             android:id="@+id/scale_show_layout"
@@ -98,6 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:background="@drawable/selector_btn_circle_gradient"
+            android:elevation="5dp"
             android:gravity="center"
             android:padding="8dp">
 
@@ -113,6 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:background="@drawable/selector_btn_circle_gradient"
+            android:elevation="5dp"
             android:gravity="center"
             android:padding="8dp">
 
@@ -128,37 +147,38 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:background="@drawable/selector_btn_circle_gradient"
+            android:elevation="5dp"
             android:gravity="center"
             android:padding="8dp">
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@mipmap/location" />
+                android:src="@mipmap/location_white" />
         </LinearLayout>
     </LinearLayout>
-    <View
-        android:id="@+id/view_layout_btn"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/primary_dark"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/layout_btn"/>
+    <!--<View-->
+    <!--android:id="@+id/view_layout_btn"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0.5dp"-->
+    <!--android:background="@color/primary_dark"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/layout_btn"/>-->
 
     <RelativeLayout
         android:id="@+id/layout_scale_view"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
         android:background="@drawable/bg_white"
         android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="@id/layout_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
@@ -182,7 +202,7 @@
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_layout_btn" />
+        app:layout_constraintTop_toBottomOf="@id/layout_btn" />
 
     <com.bupt.colorfulroute.util.MyMap
         android:id="@+id/main_map_view"
@@ -192,15 +212,15 @@
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_layout_btn" />
+        app:layout_constraintTop_toBottomOf="@id/layout_btn" />
 
     <LinearLayout
         android:id="@+id/layout_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/view_layout_btn">
+        app:layout_constraintTop_toBottomOf="@id/layout_btn">
 
         <TextView
             android:id="@+id/tip_left"
@@ -211,6 +231,7 @@
             android:alpha="0.5"
             android:background="@drawable/selector_left_tip"
             android:drawableLeft="@mipmap/slide_left"
+            android:elevation="5dp"
             android:gravity="center"
             android:paddingEnd="20dp"
             android:text="足  迹"
@@ -228,14 +249,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
+            android:background="@drawable/selector_primary_btn"
+            android:elevation="5dp"
+            android:gravity="center"
             android:paddingTop="11dp"
             android:paddingBottom="14dp"
-            android:background="@drawable/selector_primary_btn"
             android:text="规划跑"
             android:textColor="@color/icons"
-            android:textSize="12sp"
-            android:gravity="center"
-            android:elevation="4dp"/>
+            android:textSize="12sp" />
 
         <View
             android:layout_width="0dp"
@@ -252,6 +273,7 @@
             android:alpha="0.5"
             android:background="@drawable/selector_right_tip"
             android:drawableRight="@mipmap/slide_right"
+            android:elevation="5dp"
             android:gravity="center"
             android:paddingStart="10dp"
             android:text="个 人中 心"

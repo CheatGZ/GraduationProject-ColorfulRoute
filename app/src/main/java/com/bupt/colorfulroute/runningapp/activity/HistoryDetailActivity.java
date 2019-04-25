@@ -3,7 +3,6 @@ package com.bupt.colorfulroute.runningapp.activity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -116,8 +115,8 @@ public class HistoryDetailActivity extends BaseActivity {
                     map.getUiSettings().setZoomControlsEnabled(false);
 
                     titleText.setText(mRouteInfo.getStartTime());
-                    lengthText.setText("总距离: " + mRouteInfo.getLength() / 1000 + " km");
-                    timeText.setText("总时间: " + timeFormat(+mRouteInfo.getTime()));
+                    lengthText.setText(mRouteInfo.getLength() / 1000 + " km");
+                    timeText.setText(timeFormat(+mRouteInfo.getTime()));
                 }
             }
         });

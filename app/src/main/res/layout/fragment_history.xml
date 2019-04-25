@@ -10,21 +10,53 @@
     <include layout="@layout/title_bar" />
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/primary_light"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="10dp">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="5dp"
+            android:src="@mipmap/analysis_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="数据统计"
+            android:textColor="@color/icons"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/history_all"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
-        android:background="@color/primary_light"
+        android:background="@drawable/bg_primary_dark"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:paddingTop="5dp"
+        android:paddingBottom="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
 
             <TextView
                 android:id="@+id/length_all"
@@ -64,7 +96,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
 
 
             <TextView
@@ -104,7 +138,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
 
 
             <TextView
@@ -147,11 +183,12 @@
         android:background="@color/primary_light"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="10dp">
+        android:paddingStart="10dp"
+        android:paddingBottom="5dp">
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_marginEnd="5dp"
             android:src="@mipmap/history_icon" />
 
@@ -161,26 +198,30 @@
             android:gravity="center_vertical"
             android:text="跑步历史"
             android:textColor="@color/icons"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_white"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingTop="5dp">
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/refresh_layout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/icons">
+            android:background="@drawable/bg_white">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/history_list_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/history_placeholder" />
+                android:layout_height="match_parent" />
         </android.support.v4.widget.SwipeRefreshLayout>
 
         <LinearLayout
@@ -197,8 +238,8 @@
             android:visibility="gone">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:src="@mipmap/back_to_top" />
         </LinearLayout>
     </RelativeLayout>

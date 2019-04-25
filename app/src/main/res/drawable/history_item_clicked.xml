@@ -3,7 +3,5 @@
     <corners
         android:bottomLeftRadius="4dp"
         android:topLeftRadius="4dp" />
-    <gradient
-        android:endColor="@android:color/transparent"
-        android:startColor="@color/divider" />
+    <solid android:color="@color/divider"/>
 </shape>

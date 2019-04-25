@@ -18,14 +18,14 @@
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/avatar_view"
-            android:layout_width="60.0dip"
-            android:layout_height="60.0dip"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             app:roundAsCircle="true"
             app:roundingBorderColor="@color/grid_divider"
-            app:roundingBorderWidth="3dp"
+            app:roundingBorderWidth="2dp"
             fresco:actualImageScaleType="focusCrop"
             fresco:placeholderImage="@mipmap/place_holder_user"
             fresco:progressBarAutoRotateInterval="500"
@@ -47,9 +47,10 @@
                 android:ellipsize="end"
                 android:maxEms="8"
                 android:maxLines="1"
-                android:text="USER001"
+                android:text="用户001"
                 android:textColor="@color/icons"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
 
             <LinearLayout
@@ -88,6 +89,46 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/layout_vicinity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_btn_setting"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:src="@mipmap/vicinity" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_weight="7"
+                android:gravity="center_vertical"
+                android:text="附近的人"
+                android:textColor="@color/primary_light"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="10dp"
+                android:background="@mipmap/go" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="@color/divider_light" />
+
+        <LinearLayout
             android:id="@+id/layout_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -124,7 +165,7 @@
         <View
             android:id="@+id/view_one"
             android:layout_width="fill_parent"
-            android:layout_height="1px"
+            android:layout_height="0.1dp"
             android:background="@color/primary_dark" />
 
         <LinearLayout
@@ -155,7 +196,48 @@
                 android:textSize="15sp" />
 
             <ImageView
-                android:id="@+id/image_achievement_show"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="10dp"
+                android:background="@mipmap/go" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_two"
+            android:layout_width="fill_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/primary_dark" />
+
+        <LinearLayout
+            android:id="@+id/layout_analysis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_btn_setting"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:src="@mipmap/analysis" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_weight="7"
+                android:gravity="center_vertical"
+                android:text="数据统计"
+                android:textColor="@color/primary_light"
+                android:textSize="15sp" />
+
+            <ImageView
+
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginEnd="10dp"
@@ -166,25 +248,25 @@
 
     <View
         android:layout_width="fill_parent"
-        android:layout_height="1px"
+        android:layout_height="0.1dp"
         android:background="@color/primary_dark" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom"
-        android:orientation="vertical"
         android:gravity="bottom"
-        android:paddingBottom="50dp">
+        android:orientation="vertical"
+        android:paddingBottom="30dp">
 
         <TextView
             android:id="@+id/version_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
             android:gravity="center"
             android:textColor="@color/primary_dark"
-            android:textSize="12sp"
-            android:layout_marginBottom="3dp"/>
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/version_name"
@@ -193,6 +275,6 @@
             android:gravity="center"
             android:textColor="@color/primary_dark"
             android:textSize="13sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

@@ -1,15 +1,14 @@
 package com.bupt.colorfulroute.runningapp.activity;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.bupt.colorfulroute.R;
-import com.bupt.colorfulroute.runningapp.uicomponent.AlertMessage;
 import com.bupt.colorfulroute.runningapp.uiutils.StatusBarUtils;
 
 import butterknife.BindView;
@@ -20,6 +19,8 @@ public class Splash extends AppCompatActivity {
     Splash self = this;
     @BindView(R.id.splash)
     LinearLayout splash;
+    @BindView(R.id.splash_image)
+    ImageView splashImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,7 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.splash);
         ButterKnife.bind(this);
         StatusBarUtils.fullScreen(this);
-        splash.setBackgroundResource(R.mipmap.splash);
+        splashImage.setBackgroundResource(R.mipmap.splash);
 
         //判断是否已经登录，已登录直接跳到主界面
         final Thread myThread = new Thread() {//创建子线程

@@ -61,8 +61,7 @@ public class LoginActivity extends AppCompatActivity {
     UserInfo userInfo1 = new UserInfo();
     Achievement[] achievement = new Achievement[8];
     String[] permissions = new String[]{Manifest.permission.INTERNET,
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.CAMERA};
+            Manifest.permission.ACCESS_FINE_LOCATION};
     List<String> mPermissionList = new ArrayList<>();
 
 
@@ -107,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
         //login activity init
         loginButton.setOnClickListener(onClickListener);
 
-        Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.login);
+        Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.splash);
         if (drawable != null) {
             drawable.setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
         }
@@ -178,7 +177,6 @@ public class LoginActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             //关闭页面或者做其他操作
                             cancelPermissionDialog();
-
                         }
                     })
                     .create();

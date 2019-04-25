@@ -7,20 +7,26 @@
     android:layout_height="match_parent"
     android:background="@color/icons"
     android:orientation="vertical">
-
+    <LinearLayout
+        android:id="@+id/layout_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/title_bar" />
+    </LinearLayout>
     <com.amap.api.maps.MapView
         android:id="@+id/map_view"
-        android:foreground="@drawable/grdient_primary_light_top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout_title_bar"/>
 
     <android.support.v7.widget.CardView
         android:id="@+id/running_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         app:cardCornerRadius="5dp"
+        android:layout_below="@id/layout_title_bar"
         android:background="@drawable/bg_primary_light">
 
         <GridLayout
@@ -63,7 +69,7 @@
                 android:layout_margin="2dp"
                 android:gravity="center"
                 android:textColor="@color/grid_divider"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
 
@@ -81,7 +87,7 @@
                 android:layout_margin="2dp"
                 android:text="0 m"
                 android:textColor="@color/color_red_dark"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
         </GridLayout>
     </android.support.v7.widget.CardView>
 
@@ -116,7 +122,7 @@
                 android:layout_margin="2dp"
                 android:text="本次自由跑"
                 android:textColor="@color/icons"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -132,7 +138,7 @@
                 android:layout_margin="2dp"
                 android:text="跑 步 时 长:  "
                 android:textColor="@color/icons"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/run_time"
@@ -142,7 +148,7 @@
                 android:gravity="center"
                 android:text="10 分"
                 android:textColor="@color/grid_divider"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
 
@@ -151,7 +157,7 @@
                 android:layout_margin="2dp"
                 android:text="跑 步 距 离:  "
                 android:textColor="@color/icons"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/run_length"
@@ -160,7 +166,7 @@
                 android:layout_margin="2dp"
                 android:text="0 m"
                 android:textColor="@color/color_red_dark"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </GridLayout>
     </android.support.v7.widget.CardView>
 
@@ -215,7 +221,8 @@
             android:textColor="@color/icons"
             android:text="返回"
             android:textSize="12sp"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:elevation="5dp"/>
 
         <View
             android:layout_width="0dp"
@@ -229,7 +236,8 @@
             android:layout_weight="1.2"
             android:background="@drawable/slide_tip_right"
             android:gravity="center"
-            android:alpha="0.6">
+            android:alpha="0.6"
+            android:elevation="5dp">
 
             <ImageView
                 android:id="@+id/my_location"

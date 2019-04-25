@@ -36,7 +36,7 @@
         tools:targetApi="n">
         <activity
             android:name=".runningapp.activity.Splash"
-            android:launchMode="singleTask">
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,6 +60,8 @@
         <activity android:name=".runningapp.updateInfoActivity.UpdateAge" />
         <activity android:name=".runningapp.updateInfoActivity.UpdateName" />
         <activity android:name=".runningapp.updateInfoActivity.UpdateWeight" />
+        <activity android:name=".runningapp.activity.AnalysisActivity"/>
+        <activity android:name=".runningapp.activity.VicinityActivity"/>
 
         <meta-data
             android:name="com.amap.api.v2.apikey"

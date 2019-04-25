@@ -1,6 +1,7 @@
 package com.bupt.colorfulroute.runningapp.updateInfoActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -46,7 +47,11 @@ public class UpdateAge extends BaseActivity {
                 case R.id.right_layout:
                     if (inputText.getText().toString().equals("") || Integer.parseInt(inputText.getText().toString()) == 0) {
                         alert(new AlertMessage("提交失败！", "请输入有效值！"));
-                    } else {
+                    } else if(Integer.parseInt(inputText.getText().toString())<0||Integer.parseInt(inputText.getText().toString())>101)
+                    {
+                        alert(new AlertMessage("提交失败！", "年龄范围必须在0~101之间！"));
+                    }
+                    else {
                         SharedPreferences sp = self.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
                         String objectId = sp.getString("objectId", "");
                         UserInfo userInfo = new UserInfo();

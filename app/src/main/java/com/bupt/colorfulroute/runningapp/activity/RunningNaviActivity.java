@@ -7,10 +7,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
@@ -106,18 +108,16 @@ public class RunningNaviActivity extends BaseActivity implements AMapNaviViewLis
     public long currentTime;
     public boolean isRun = true;
     public RunningData runningData;
-    public Long time;
+    public Long time = 0L;
     public List<Achievement> achievement;
-    public Integer number;
-    public Double length;
-
+    public Integer number = 0;
+    public Double length = 0D;
     @BindView(R.id.chronometer)
     Chronometer chronometer;
     @BindView(R.id.navi_length_text)
     TextView naviLengthText;
     @BindView(R.id.navi_finish_button)
     Button naviFinishButton;
-
     @BindView(R.id.route_kind)
     TextView routeKind;
     @BindView(R.id.route_length)
@@ -136,13 +136,12 @@ public class RunningNaviActivity extends BaseActivity implements AMapNaviViewLis
     TextView runLength;
     @BindView(R.id.runned_date)
     CardView runnedDate;
-
     BitmapDescriptor[] descriptors = {
             BitmapDescriptorFactory.fromResource(R.mipmap.blue_road)
     };
     @BindView(R.id.weibo_share)
     ImageView weiboShare;
-
+    private List<RouteInfo> routeList = new ArrayList<>();
     private RunningNaviActivity self = this;
     private AMap aMap;
     private AMapNaviView aMapNaviView = null;
@@ -175,43 +174,56 @@ public class RunningNaviActivity extends BaseActivity implements AMapNaviViewLis
                 case 1:
                     SharedPreferences sp = self.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
                     final String objectId = sp.getString("objectId", "null");
-                    UserInfo userInfo1 = new UserInfo();
-
-                    userInfo1.setTotalLength(runningData.length + length);
-                    userInfo1.setTotalTime(runningData.time + time);
-                    userInfo1.setNumber(1 + number);//跑步次数加1
-//                    //成就判断
-//                    if (userInfo1.getNumber() >= 1 || achievement.get(1).getTimeAchieved() == 0) {
-//                        userInfo1.getAchievement().get(1).setTimeAchieved(System.currentTimeMillis());
-//                    }
-//                    if (userInfo1.getNumber() >= 10 || achievement.get(2).getTimeAchieved() == 0) {
-//                        userInfo1.getAchievement().get(2).setTimeAchieved(System.currentTimeMillis());
-//                    }
-//                    if (runningData.length >= 1000 || achievement.get(3).getTimeAchieved() == 0) {
-//                        userInfo1.getAchievement().get(3).setTimeAchieved(System.currentTimeMillis());
-//                    }
-//                    if (runningData.length >= 10000 || achievement.get(4).getTimeAchieved() == 0) {
-//                        userInfo1.getAchievement().get(4).setTimeAchieved(System.currentTimeMillis());
-//                    }
-//                    if (length >= 100000 || achievement.get(5).getTimeAchieved() == 0) {
-//                        userInfo1.getAchievement().get(5).setTimeAchieved(System.currentTimeMillis());
-//                    }
-//                    if (time >= 36000000 || achievement.get(6).getTimeAchieved() == 0) {
-//                        userInfo1.getAchievement().get(6).setTimeAchieved(System.currentTimeMillis());
-//                    }
+                    for (int i = 0; i < routeList.size(); i++) {
+                        length += routeList.get(i).getLength();
+                        time += routeList.get(i).getTime();
+                    }
+                    final UserInfo userInfo1 = new UserInfo();
+                    userInfo1.setTotalLength(length);
+                    userInfo1.setTotalTime(time);
+                    userInfo1.setNumber(routeList.size());//跑步次数加1
                     userInfo1.update(objectId, new UpdateListener() {
                         @Override
                         public void done(BmobException e) {
                             if (e == null) {
+                                BmobQuery<UserInfo> bmobQuery = new BmobQuery();
+                                bmobQuery.getObject(objectId, new QueryListener<UserInfo>() {
+                                    @Override
+                                    public void done(UserInfo userInfo, BmobException e) {
+                                        //成就更新判断
+                                        if (userInfo.getNumber() >= 1 || userInfo.getAchievement().get(1).getTimeAchieved() == 0) {
+                                            userInfo.getAchievement().get(1).setTimeAchieved(System.currentTimeMillis());
+                                        }
+                                        if (userInfo.getNumber() >= 10 || userInfo.getAchievement().get(2).getTimeAchieved() == 0) {
+                                            userInfo.getAchievement().get(2).setTimeAchieved(System.currentTimeMillis());
+                                        }
+                                        if (runnedLength >= 1000 || userInfo.getAchievement().get(3).getTimeAchieved() == 0) {
+                                            userInfo.getAchievement().get(3).setTimeAchieved(System.currentTimeMillis());
+                                        }
+                                        if (runnedLength >= 10000 || userInfo.getAchievement().get(4).getTimeAchieved() == 0) {
+                                            userInfo.getAchievement().get(4).setTimeAchieved(System.currentTimeMillis());
+                                        }
+                                        if (length >= 100000 || userInfo.getAchievement().get(5).getTimeAchieved() == 0) {
+                                            userInfo.getAchievement().get(5).setTimeAchieved(System.currentTimeMillis());
+                                        }
+                                        if (time >= 36000000 || userInfo.getAchievement().get(6).getTimeAchieved() == 0) {
+                                            userInfo.getAchievement().get(6).setTimeAchieved(System.currentTimeMillis());
+                                        }
+                                        userInfo.update(objectId, new UpdateListener() {
+                                            @Override
+                                            public void done(BmobException e) {
+
+                                            }
+                                        });
+                                    }
+                                });
+
                             }
                         }
                     });
                     break;
                 case 2:
                     naviLengthText.setText(runnedLength + " m");
-                    break;
-                case 3:
-
                     break;
             }
         }
@@ -261,7 +273,7 @@ public class RunningNaviActivity extends BaseActivity implements AMapNaviViewLis
                     if (!flag) {
                         chronometer.stop();
                         naviFinishButton.setText("继续(长按结束)");
-                        naviFinishButton.setBackgroundResource(R.drawable.bg_divider);
+                        naviFinishButton.setBackgroundResource(R.drawable.bg_divider500);
                         flag = true;
                     } else {
                         chronometer.setBase(CheckFormat.convertStrTimeToLong(chronometer.getText().toString()));
@@ -288,6 +300,28 @@ public class RunningNaviActivity extends BaseActivity implements AMapNaviViewLis
                             onMapScreenShot(bitmap);
                         }
                     });
+                    weiboShare.setEnabled(false);
+                    SharedPreferences sp = self.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                    final String objectId = sp.getString("objectId", "null");
+                    BmobQuery<UserInfo> bmobQuery = new BmobQuery();
+                    bmobQuery.getObject(objectId, new QueryListener<UserInfo>() {
+                        @Override
+                        public void done(UserInfo userInfo, BmobException e) {
+                            if (e == null) {
+                                if (userInfo.getAchievement().get(7).getTimeAchieved() == 0) {
+                                    userInfo.getAchievement().get(7).setTimeAchieved(System.currentTimeMillis());
+                                    userInfo.update(objectId, new UpdateListener() {
+                                        @Override
+                                        public void done(BmobException e) {
+                                            if (e == null) {
+                                                Log.d("Cheat achievement","achievement sucess!");
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    });
                     break;
                 case R.id.back_main_button:
                     finish();
@@ -302,7 +336,7 @@ public class RunningNaviActivity extends BaseActivity implements AMapNaviViewLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_running_navi);
-        StatusBarUtils.setStatusBarColor(this,Color.TRANSPARENT,false);
+        StatusBarUtils.setStatusBarColor(this, Color.TRANSPARENT, false);
         ButterKnife.bind(this);
         vibrator = (Vibrator) this.getSystemService(this.VIBRATOR_SERVICE);
 
@@ -349,8 +383,6 @@ public class RunningNaviActivity extends BaseActivity implements AMapNaviViewLis
         naviFinishButton.setOnClickListener(onClickListener);
         naviFinishButton.setOnLongClickListener(onLongClickListener);
         naviLengthText.setOnClickListener(onClickListener);
-
-
 
 
         /**
@@ -437,7 +469,7 @@ public class RunningNaviActivity extends BaseActivity implements AMapNaviViewLis
         aMap.setOnMyLocationChangeListener(new AMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location location) {
-                if(location!=null) {
+                if (location != null) {
                     aMapLocation = location;
 //                    Message message = new Message();
 //                    message.what = 3;
@@ -512,25 +544,26 @@ public class RunningNaviActivity extends BaseActivity implements AMapNaviViewLis
             public void done(String s, BmobException e) {
                 if (e == null) {
                     System.out.println("添加数据成功，返回objectId为：" + s);
+                    BmobQuery<RouteInfo> bmobQuery = new BmobQuery<>();
+                    bmobQuery.addWhereEqualTo("account", account);
+                    bmobQuery.order("-startTime");
+                    bmobQuery.findObjects(new FindListener<RouteInfo>() {
+                        @RequiresApi(api = Build.VERSION_CODES.M)
+                        @Override
+                        public void done(List<RouteInfo> list, BmobException e) {
+                            if (e == null) {
+                                routeList = new ArrayList<>();
+                                routeList.addAll(list);
+                                msg = new Message();
+                                msg.what = 1;
+                                handler.sendMessage(msg);
+                            } else {
+                                System.out.println("analysis bmob fail!" + e.getMessage());
+                            }
+                        }
+                    });
                 } else {
                     System.out.println("创建数据失败：" + e.getMessage());
-                }
-            }
-        });
-
-        BmobQuery<UserInfo> bmobQuery = new BmobQuery<>();
-        bmobQuery.addWhereEqualTo("objectId", objectId);
-        bmobQuery.findObjects(new FindListener<UserInfo>() {
-            @Override
-            public void done(List<UserInfo> list, BmobException e) {
-                if (e == null) {
-                    length = list.get(0).getTotalLength();
-                    time = list.get(0).getTotalTime();
-                    achievement = list.get(0).getAchievement();
-                    number = list.get(0).getNumber();
-                    Message message = new Message();
-                    message.what = 1;
-                    handler.sendMessage(message);
                 }
             }
         });
@@ -628,7 +661,6 @@ public class RunningNaviActivity extends BaseActivity implements AMapNaviViewLis
     @Override
     public void onCalculateRouteSuccess(int[] ints) {
         if (calculatedPathIndex != passPoints.size() - 1 && !initialized) {
-
             RouteOverLay routeOverLay = drawRoute(aMapNavi.getNaviPath(), 40, 0, passPoints.size() - 2);
             calculatedPathIndex++;
             if (calculatedPathIndex == pathPoints.size() - 1) {
@@ -885,26 +917,7 @@ public class RunningNaviActivity extends BaseActivity implements AMapNaviViewLis
     @Override
     public void onWbShareSuccess() {
         weiboShare.setImageResource(R.mipmap.share_complete);
-        weiboShare.setClickable(false);
-        SharedPreferences sp = self.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        final String objectId = sp.getString("objectId", "null");
-        final UserInfo userInfo3 = new UserInfo();
-        BmobQuery<UserInfo> bmobQuery = new BmobQuery();
-        bmobQuery.getObject(objectId, new QueryListener<UserInfo>() {
-            @Override
-            public void done(UserInfo userInfo, BmobException e) {
-                if (userInfo.getAchievement().get(7).getTimeAchieved() == 0) {
-                    userInfo3.getAchievement().get(7).setTimeAchieved(System.currentTimeMillis());
-                    userInfo3.update(objectId, new UpdateListener() {
-                        @Override
-                        public void done(BmobException e) {
-                            if (e == null) {
-                            }
-                        }
-                    });
-                }
-            }
-        });
+        weiboShare.setEnabled(false);
     }
 
     @Override

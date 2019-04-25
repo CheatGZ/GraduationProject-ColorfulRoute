@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/icons"
+    android:background="@color/primary_light"
     android:orientation="vertical">
 
     <include layout="@layout/title_bar" />
@@ -18,5 +18,8 @@
         android:maxLength="11"
         android:textCursorDrawable="@null"
         android:textColor="@color/icons"
-        tools:ignore="LabelFor" />
+        tools:ignore="LabelFor"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp" />
 </LinearLayout>

@@ -1,0 +1,444 @@
+@startuml
+
+title __ACTIVITY's Class Diagram__\n
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class AchievementActivity {
+          ~ backButton : ImageView
+          ~ leftLayout : LinearLayout
+          ~ titleText : TextView
+          ~ rightButton : ImageView
+          ~ rightLayout : LinearLayout
+          ~ titleBar : LinearLayout
+          ~ achievementRv : RecyclerView
+          - achievementShow : TextView
+          - achievement : String
+          - list : List<Achievement>
+          - mPosition : int
+          - sp : SharedPreferences
+          - onClickListener : OnClickListener
+          # onCreate()
+          - initAchievement()
+          + showAchievementDialog()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class AnalysisActivity {
+          ~ backButton : ImageView
+          ~ leftLayout : LinearLayout
+          ~ titleText : TextView
+          ~ rightButton : ImageView
+          ~ rightLayout : LinearLayout
+          ~ analysisNumber : TextView
+          - lineChart : LineChartView
+          - pieChart : PieChartView
+          - lengthAll : TextView
+          - timeAll : TextView
+          - bestLength : TextView
+          - bestTime : TextView
+          - routeList : List<RouteInfo>
+          - msg : Message
+          - mPointValues : List<PointValue>
+          - mAxisXValues : List<AxisValue>
+          - values : List<SliceValue>
+          - data : PieChartData
+          - hasLabels : boolean
+          - hasLabelsOutside : boolean
+          - hasCenterCircle : boolean
+          - hasCenterText1 : boolean
+          - hasCenterText2 : boolean
+          - isExploded : boolean
+          - hasLabelForSelected : boolean
+          - handler : Handler
+          - onClickListener : OnClickListener
+          # onCreate()
+          - initPieChart()
+          - intiLineChart()
+          - updateStatisticData()
+          - updateHistoryData()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class FreeRunActivity {
+          + latitudes : List<Double>
+          + longitudes : List<Double>
+          + runnedLength : Double
+          + aMapLocation : AMapLocation
+          + aMapLocationClient : AMapLocationClient
+          + aMapLocationClientOption : AMapLocationClientOption
+          ~ chronometer : Chronometer
+          ~ runLengthText : TextView
+          ~ runFinishButton : Button
+          ~ runTime : TextView
+          ~ runLength : TextView
+          ~ backMainButton : Button
+          ~ runningDate : CardView
+          ~ runnedDate : CardView
+          ~ interval : long
+          ~ currentTime : long
+          ~ isRun : boolean
+          ~ myLocation : ImageView
+          - mapView : MapView
+          - aMap : AMap
+          - myLocationStyle : MyLocationStyle
+          - vibrator : Vibrator
+          - flag : boolean
+          - onClickListener : OnClickListener
+          - onLongClickListener : OnLongClickListener
+          - msg : Message
+          - handler : Handler
+          # onCreate()
+          - initMyLocation()
+          - initMap()
+          # onDestroy()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class HistoryDetailActivity {
+          ~ backButton : ImageView
+          ~ titleText : TextView
+          ~ rightButton : ImageView
+          ~ leftLayout : LinearLayout
+          ~ rightLayout : LinearLayout
+          ~ lengthText : TextView
+          ~ timeText : TextView
+          - ployPoints : List<LatLng>
+          - objectId : String
+          - mapView : MapView
+          - map : AMap
+          - onClickListener : OnClickListener
+          # onCreate()
+          - initMap()
+          - timeFormat()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class LoginActivity {
+          - mRequestCode : int
+          ~ ssoHandler : SsoHandler
+          ~ loginButton : Button
+          ~ loginBgLayout : LinearLayout
+          ~ achievement : Achievement[]
+          ~ permissions : String[]
+          ~ mPermissionList : List<String>
+          ~ mPermissionDialog : AlertDialog
+          ~ mPackName : String
+          - isSignedUp : boolean
+          ~ onClickListener : OnClickListener
+          # onCreate()
+          - initPermission()
+          + onRequestPermissionsResult()
+          - showPermissionDialog()
+          - cancelPermissionDialog()
+          # onActivityResult()
+          - initAchievement()
+          + finish()
+          - weiboLogin()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class MainActivity {
+          + titles : String[]
+          + history : Fragment
+          + main : Fragment
+          + user : Fragment
+          ~ scrollView : ViewPager
+          ~ indicator : TabPageIndicator
+          - currentPage : int
+          # onCreate()
+          - judgeNetAndGPS()
+          # onResume()
+          + changeFragment()
+          + onBackPressed()
+          - initView()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class TabPageIndicatorAdapter {
+          ~ args : Bundle
+          + TabPageIndicatorAdapter()
+          + getItem()
+          + getPageTitle()
+          + getCount()
+          + destroyItem()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class RouteSelectActivity {
+          ~ startNaviButton : Button
+          ~ backButton : ImageView
+          ~ leftLayout : LinearLayout
+          ~ titleText : TextView
+          ~ rightButton : ImageView
+          ~ rightLayout : LinearLayout
+          - savedInstanceState : Bundle
+          - mainMapView : TextureMapView
+          - myLocationStyle : MyLocationStyle
+          - aMap : AMap
+          - routeSchemaDiagramContainer : LinearLayout
+          - routeSchematicDiagramList : ArrayList<RouteSchematicDiagramLayout>
+          - length : int
+          - longitude : double
+          - latitude : double
+          - passPoints : List<LatLng>
+          - onClickListener : OnClickListener
+          + onCreate()
+          + addSchematicDiagram()
+          + getSavedInstanceState()
+          - searchRoute()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class RunningNaviActivity {
+          {static} - CLOSE_LIMINAL : double
+          - NEIBOUR_DISTANCE : double
+          + latitudes : List<Double>
+          + longitudes : List<Double>
+          + runnedLength : Double
+          + aMapLocation : Location
+          + aMapLocationClient : AMapLocationClient
+          + aMapLocationClientOption : AMapLocationClientOption
+          + interval : long
+          + currentTime : long
+          + isRun : boolean
+          + time : Long
+          + achievement : List<Achievement>
+          + number : Integer
+          + length : Double
+          ~ chronometer : Chronometer
+          ~ naviLengthText : TextView
+          ~ naviFinishButton : Button
+          ~ routeKind : TextView
+          ~ routeLength : TextView
+          ~ myTrafficButtonView : TrafficButtonView
+          ~ backMainButton : Button
+          ~ myOverviewButtonView : OverviewButtonView
+          ~ runningDate : CardView
+          ~ runTime : TextView
+          ~ runLength : TextView
+          ~ runnedDate : CardView
+          ~ descriptors : BitmapDescriptor[]
+          ~ weiboShare : ImageView
+          - routeList : List<RouteInfo>
+          - aMap : AMap
+          - aMapNaviView : AMapNaviView
+          - aMapNavi : AMapNavi
+          - transparentBitmap : Bitmap
+          - startTime : long
+          - pathPoints : ArrayList<LatLng>
+          - passPoints : List<NaviLatLng>
+          - calculatedPathIndex : int
+          - initialized : boolean
+          - navigationStarted : boolean
+          - flag : boolean
+          - mOverviewButtonView : OverviewButtonView
+          - mTrafficButtonView : TrafficButtonView
+          - vibrator : Vibrator
+          - myLocation : NaviLatLng
+          - routeOverLays : List<RouteOverLay>
+          - msg : Message
+          - handler : Handler
+          - onLongClickListener : OnLongClickListener
+          - wbShareHandler : WbShareHandler
+          - onClickListener : OnClickListener
+          # onCreate()
+          - initMyLocation()
+          - showRoute()
+          - UpdateRunData()
+          + latLngToNaviLatLng()
+          # onResume()
+          # onPause()
+          # onDestroy()
+          + onBackPressed()
+          + onInitNaviFailure()
+          + onInitNaviSuccess()
+          + onStartNavi()
+          + onTrafficStatusUpdate()
+          + onLocationChange()
+          + onArriveDestination()
+          + onGetNavigationText()
+          + onGetNavigationText()
+          + onEndEmulatorNavi()
+          + onArriveDestination()
+          + onCalculateRouteFailure()
+          + onCalculateRouteSuccess()
+          - drawRoute()
+          + onStopSpeaking()
+          + onReCalculateRoute()
+          + onExitPage()
+          + onStrategyChanged()
+          + getCustomNaviBottomView()
+          + getCustomNaviView()
+          + onReCalculateRouteForYaw()
+          + onReCalculateRouteForTrafficJam()
+          + onArrivedWayPoint()
+          + onGpsOpenStatus()
+          + onNaviInfoUpdate()
+          + onNaviInfoUpdated()
+          + updateCameraInfo()
+          + updateIntervalCameraInfo()
+          + onServiceAreaUpdate()
+          + showCross()
+          + hideCross()
+          + showModeCross()
+          + hideModeCross()
+          + showLaneInfo()
+          + showLaneInfo()
+          + hideLaneInfo()
+          + notifyParallelRoad()
+          + OnUpdateTrafficFacility()
+          + OnUpdateTrafficFacility()
+          + OnUpdateTrafficFacility()
+          + updateAimlessModeStatistics()
+          + updateAimlessModeCongestionInfo()
+          + onPlayRing()
+          + onCalculateRouteSuccess()
+          + onCalculateRouteFailure()
+          + onNaviRouteNotify()
+          + onNaviSetting()
+          + onNaviCancel()
+          + onNaviBackClick()
+          + onNaviMapMode()
+          + onNaviTurnClick()
+          + onNextRoadClick()
+          + onScanViewButtonClick()
+          + onLockMap()
+          + onNaviViewLoaded()
+          + onMapTypeChanged()
+          + onNaviViewShowMode()
+          - getDistance()
+          - getDistance()
+          + onWbShareSuccess()
+          + onWbShareCancel()
+          + onWbShareFail()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class Splash {
+          + flag_net : int
+          ~ splash : LinearLayout
+          ~ splashImage : ImageView
+          # onCreate()
+          + finish()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.activity {
+      class VicinityActivity {
+          + df : DecimalFormat
+          + mapLocation : AMapLocation
+          + aMapLocationClient : AMapLocationClient
+          + aMapLocationListener : AMapLocationListener
+          + aMapLocationClientOption : AMapLocationClientOption
+          ~ backButton : ImageView
+          ~ leftLayout : LinearLayout
+          ~ titleText : TextView
+          ~ rightButton : ImageView
+          ~ rightLayout : LinearLayout
+          ~ titleBar : LinearLayout
+          ~ btnVicinity : RadioButton
+          ~ btnOnline : RadioButton
+          - rvVicinity : RecyclerView
+          - userList : List<UserInfo>
+          - onClickListener : OnClickListener
+          # onCreate()
+          - updateVicinitybyLength()
+          - updateVicinitybyTime()
+          # onDestroy()
+      }
+    }
+  }
+  
+
+  AchievementActivity -up-|> BaseActivity
+  AchievementActivity o-- AchievementDialog : achievementDialog
+  HostCallbacks -up-|> FragmentHostCallback
+  AnalysisActivity -up-|> BaseActivity
+  AnalysisActivity o-- UserInfo : userInfo1
+  HostCallbacks -up-|> FragmentHostCallback
+  FreeRunActivity -up-|> BaseActivity
+  HostCallbacks -up-|> FragmentHostCallback
+  HistoryDetailActivity -up-|> BaseActivity
+  HistoryDetailActivity o-- HistoryDetailActivity : self
+  HistoryDetailActivity o-- RouteInfo : mRouteInfo
+  HostCallbacks -up-|> FragmentHostCallback
+  LoginActivity -up-|> AppCompatActivity
+  LoginActivity o-- LoginActivity : self
+  LoginActivity o-- WbAuthUtils : utils
+  LoginActivity o-- UserInfo : userInfo1
+  HostCallbacks -up-|> FragmentHostCallback
+  MainActivity -up-|> AaseActivity
+  MainActivity o-- TabPageIndicatorAdapter : mAdpter
+  MainActivity +-down- TabPageIndicatorAdapter
+  TabPageIndicatorAdapter -up-|> FragmentPagerAdapter
+  HostCallbacks -up-|> FragmentHostCallback
+  RouteSelectActivity -up-|> BaseActivity
+  RouteSelectActivity o-- RouteSelectActivity : self
+  RouteSelectActivity o-- RouteSchematicDiagramLayout : selectedDiagram
+  HostCallbacks -up-|> FragmentHostCallback
+  RunningNaviActivity -up-|> AMapNaviViewListener
+  RunningNaviActivity -up-|> AMapNaviListener
+  RunningNaviActivity -up-|> INaviInfoCallback
+  RunningNaviActivity -up-|> WbShareCallback
+  RunningNaviActivity -up-|> BaseActivity
+  RunningNaviActivity o-- RunningData : runningData
+  RunningNaviActivity o-- RunningNaviActivity : self
+  RunningNaviActivity o-- RouteData : routeData
+  HostCallbacks -up-|> FragmentHostCallback
+  Splash -up-|> AppCompatActivity
+  Splash o-- Splash : self
+  HostCallbacks -up-|> FragmentHostCallback
+  VicinityActivity -up-|> BaseActivity
+  VicinityActivity o-- VicinityAdapter : vicinityAdapter
+  VicinityActivity o-- OnMultiClickListener : onMultiClickListener
+  HostCallbacks -up-|> FragmentHostCallback
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

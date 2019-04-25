@@ -22,8 +22,26 @@ public class UserInfo extends BmobObject {
     private Integer number;//跑步次数
     private String title;//称号
     private List<Achievement> achievement;//成就信息
+    private List<Double> location;//定位信息
+    private Long logInTime;//最新登录时间
 
     public UserInfo() {
+    }
+
+    public Long getLogInTime() {
+        return logInTime;
+    }
+
+    public void setLogInTime(Long logInTime) {
+        this.logInTime = logInTime;
+    }
+
+    public List<Double> getLocation() {
+        return location;
+    }
+
+    public void setLocation(List<Double> location) {
+        this.location = location;
     }
 
     public List<Achievement> getAchievement() {

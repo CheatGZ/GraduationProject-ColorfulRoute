@@ -83,7 +83,7 @@ public class FreeRunActivity extends BaseActivity {
                     if (!flag) {
                         chronometer.stop();
                         runFinishButton.setText("继续(长按结束)");
-                        runFinishButton.setBackgroundResource(R.drawable.bg_divider);
+                        runFinishButton.setBackgroundResource(R.drawable.bg_divider500);
                         flag = true;
                     } else {
                         chronometer.setBase(CheckFormat.convertStrTimeToLong(chronometer.getText().toString()));

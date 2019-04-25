@@ -1,0 +1,161 @@
+@startuml
+
+title __FRAGMENT's Class Diagram__\n
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.fragment {
+      class HistoryFragment {
+          + refreshLayout : SwipeRefreshLayout
+          ~ backButton : ImageView
+          ~ titleText : TextView
+          ~ rightButton : ImageView
+          ~ historyAll : LinearLayout
+          ~ unbinder : Unbinder
+          ~ layoutBackToTop : LinearLayout
+          ~ rightLayout : LinearLayout
+          - length : TextView
+          - time : TextView
+          - number : TextView
+          - itemView : RecyclerView
+          - routeList : List<RouteInfo>
+          - msg : Message
+          - flag : Boolean
+          - handler : Handler
+          {static} + newInstance()
+          + onCreateView()
+          - showBtnBackToTop()
+          - updateHistoryData()
+          + onDestroyView()
+          + onResume()
+          - updateStatisticData()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.fragment {
+      class MainFragment {
+          {static} # FLIP_DISTANCE : float
+          ~ changeMap : LinearLayout
+          ~ scaleShowLayout : LinearLayout
+          ~ layoutScaleView : RelativeLayout
+          ~ titleText : TextView
+          ~ titleBar : LinearLayout
+          ~ tipLeft : TextView
+          ~ tipRight : TextView
+          ~ unbinder : Unbinder
+          ~ layoutTitleBar : ConstraintLayout
+          ~ onLongClickListener : OnLongClickListener
+          ~ layoutStart : LinearLayout
+          ~ routeKindBtn : TextView
+          ~ myLocation : LinearLayout
+          ~ layoutProgressView : LinearLayout
+          - btnRunStart : TextView
+          - rb : RadioButton[]
+          - checkedRoute : int
+          - popupWindow : PopupWindow
+          ~ routeKind : OnClickListener
+          - mDetector : GestureDetector
+          - length : int
+          - longitude : double
+          - latitude : double
+          - myLocationStyle : MyLocationStyle
+          - aMap : AMap
+          - markers : List<Marker>
+          - markerOptions : MarkerOptions
+          - flag_map_show : int
+          - flag_scale : boolean
+          ~ onClickListener : OnClickListener
+          - zoom : float
+          {static} + newInstance()
+          + onCreateView()
+          - initGestureDetector()
+          - initDialView()
+          - initScrollTextView()
+          - initScaleView()
+          - initRouteKind()
+          - showPopWindow()
+          - initMap()
+          - intiUserMarker()
+          + onResume()
+          + onDestroyView()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.fragment {
+      class UserFragment {
+          {static} - GET_PIC_FROM_PHOTOS : int
+          {static} - CROP_PHOTO : int
+          ~ backButton : ImageView
+          ~ titleText : TextView
+          ~ rightButton : ImageView
+          ~ descriptionEdit : ImageView
+          ~ descriptionLayout : LinearLayout
+          ~ infoText : LinearLayout
+          ~ personInfoRel : RelativeLayout
+          ~ layoutInfo : LinearLayout
+          ~ layoutAchievement : LinearLayout
+          ~ titleBar : LinearLayout
+          ~ viewOne : View
+          ~ sp : SharedPreferences
+          ~ avatarView : SimpleDraweeView
+          ~ descriptionText : TextView
+          ~ userNameText : TextView
+          ~ rightLayout : LinearLayout
+          ~ versionCode : TextView
+          ~ versionName : TextView
+          ~ layoutAnalysis : LinearLayout
+          ~ leftLayout : LinearLayout
+          ~ layoutVicinity : LinearLayout
+          ~ unbinder : Unbinder
+          - avatar : Bitmap
+          - name : String
+          - icon : String
+          - description : String
+          - msg : Message
+          - handler : Handler
+          - onClickListener : OnClickListener
+          {static} + newInstance()
+          + onCreateView()
+          - initUserinfo()
+          + showLogoutDialog()
+          + showEditDialog()
+          + onDestroyView()
+          + onResume()
+      }
+    }
+  }
+  
+
+  HistoryFragment -up-|> Fragment
+  HistoryFragment o-- HistoryAdapter : mAdapter
+  HistoryFragment o-- UserInfo : userInfo1
+  HistoryFragment o-- OverFlyingLayoutManager : layoutManager
+  HistoryFragment o-- OnMultiClickListener : onMultiClickListener
+  SavedState -up-|> Parcelable
+  MainFragment -up-|> Fragment
+  MainFragment o-- ScrollTextView : scrollTextView
+  MainFragment o-- VerticalScaleView : lengthScaleView
+  MainFragment o-- DashBoardProgressView : wpbView
+  MainFragment o-- MyMap : mapView
+  MainFragment o-- OnMultiClickListener : onMultiClickListener
+  SavedState -up-|> Parcelable
+  UserFragment -up-|> Fragment
+  UserFragment o-- DescriptionDialog : descriptionDialog
+  UserFragment o-- LogoutDialog : logoutDialog
+  UserFragment o-- OnMultiClickListener : onMultiClickListener
+  SavedState -up-|> Parcelable
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

@@ -72,16 +72,28 @@ public class MainActivity extends AaseActivity {
         indicator.setCurrentItem(fragment);
     }
 
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (currentPage == 0) {
+//            changeFragment(1);
+//            return true;
+//        } else if (currentPage == 2) {
+//            changeFragment(1);
+//            return true;
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
+
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public void onBackPressed() {
         if (currentPage == 0) {
             changeFragment(1);
-            return true;
         } else if (currentPage == 2) {
             changeFragment(1);
-            return true;
         }
-        return super.onKeyDown(keyCode, event);
+        else {
+            super.onBackPressed();
+        }
     }
 
     private void initView() {

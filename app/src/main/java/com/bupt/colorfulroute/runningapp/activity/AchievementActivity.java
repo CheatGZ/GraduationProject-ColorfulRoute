@@ -157,7 +157,6 @@ public class AchievementActivity extends BaseActivity {
     }
 
     public void showAchievementDialog() {
-        //TODO 实时监测后台成就信息，并返回前端
         achievementDialog = new AchievementDialog(this, onClickListener, list.get(mPosition), mPosition);
         achievementDialog.show();
     }

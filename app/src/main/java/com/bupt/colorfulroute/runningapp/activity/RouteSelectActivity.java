@@ -161,6 +161,8 @@ public class RouteSelectActivity extends BaseActivity {
         aMap.moveCamera(CameraUpdateFactory.zoomTo(18));
         aMap.getUiSettings().setAllGesturesEnabled(true);//不允许手势
         aMap.getUiSettings().setZoomControlsEnabled(false);//删除缩放按钮
+
+        //规划路径
         new Thread(new Runnable() {
             @Override
             public void run() {

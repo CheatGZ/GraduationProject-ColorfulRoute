@@ -42,7 +42,11 @@ public class UpdateHeight extends BaseActivity {
                 case R.id.right_layout:
                     if (inputText.getText().toString().equals("") || Integer.parseInt(inputText.getText().toString()) == 0) {
                         alert(new AlertMessage("提交失败！", "请输入有效值！"));
-                    } else {
+                    } else if(Integer.parseInt(inputText.getText().toString())<0||Integer.parseInt(inputText.getText().toString())>201)
+                    {
+                        alert(new AlertMessage("提交失败！", "身高范围必须在0~201之间！"));
+                    }
+                    else {
                         SharedPreferences sp = self.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
                         String objectId = sp.getString("objectId", "");
                         UserInfo userInfo = new UserInfo();

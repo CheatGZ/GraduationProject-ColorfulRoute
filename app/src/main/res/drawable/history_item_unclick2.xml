@@ -3,6 +3,5 @@
     <corners
         android:bottomLeftRadius="4dp"
         android:topLeftRadius="4dp" />
-    <gradient android:startColor="@color/color_red_dark"
-        android:endColor="@android:color/transparent"/>
+    <solid android:color="@color/color_red_dark"/>
 </shape>

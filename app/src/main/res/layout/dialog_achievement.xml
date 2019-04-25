@@ -27,16 +27,13 @@
             fresco:viewAspectRatio="1" />
 
     </LinearLayout>
-
-
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:columnCount="2"
-        android:rowCount="4">
+        android:columnCount="2">
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,7 +65,7 @@
             android:id="@+id/text_achievement_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="fill_horizontal"
+            android:layout_marginEnd="60dp"
             android:text="\???"
             android:textColor="@color/primary_light"
             android:textSize="12sp" />
@@ -117,7 +114,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/selector_primary_btn"
-        android:text="显  示"
+        android:text="佩带徽章"
         android:textColor="@color/icons"
         android:textSize="12sp" />
 

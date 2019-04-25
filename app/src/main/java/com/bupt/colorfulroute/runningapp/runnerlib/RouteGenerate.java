@@ -1067,25 +1067,21 @@ public class RouteGenerate {
                 points.add(routeDatas[0].keyPoints.get(7));
                 points.add(routeDatas[0].keyPoints.get(6));
                 //花瓣2
-//                points.add(routeDatas[1].keyPoints.get(2));
                 points.add(routeDatas[1].keyPoints.get(5));
                 points.add(routeDatas[1].keyPoints.get(4));
                 points.add(routeDatas[1].keyPoints.get(3));
                 points.add(routeDatas[1].keyPoints.get(2));
                 //花瓣3
-//                points.add(routeDatas[2].keyPoints.get(2));
                 points.add(routeDatas[2].keyPoints.get(5));
                 points.add(routeDatas[2].keyPoints.get(4));
                 points.add(routeDatas[2].keyPoints.get(3));
                 points.add(routeDatas[2].keyPoints.get(2));
                 //花瓣4
-//                points.add(routeDatas[3].keyPoints.get(2));
                 points.add(routeDatas[3].keyPoints.get(5));
                 points.add(routeDatas[3].keyPoints.get(4));
                 points.add(routeDatas[3].keyPoints.get(3));
                 points.add(routeDatas[3].keyPoints.get(2));
                 //花瓣1
-//                points.add(routeDatas[0].keyPoints.get(6));
                 points.add(routeDatas[0].keyPoints.get(1));
                 points.add(routeDatas[0].keyPoints.get(0));
                 break;

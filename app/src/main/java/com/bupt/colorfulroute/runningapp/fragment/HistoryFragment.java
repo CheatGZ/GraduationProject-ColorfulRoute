@@ -28,17 +28,21 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bupt.colorfulroute.R;
+import com.bupt.colorfulroute.runningapp.activity.AnalysisActivity;
 import com.bupt.colorfulroute.runningapp.activity.HistoryDetailActivity;
+import com.bupt.colorfulroute.runningapp.activity.MainActivity;
 import com.bupt.colorfulroute.runningapp.adapter.HistoryAdapter;
 import com.bupt.colorfulroute.runningapp.adapter.RecycleItemTouchHelper;
 import com.bupt.colorfulroute.runningapp.entity.RouteInfo;
 import com.bupt.colorfulroute.runningapp.entity.UserInfo;
 import com.bupt.colorfulroute.runningapp.uicomponent.overFlyingView.OverFlyingLayoutManager;
+import com.bupt.colorfulroute.util.OnMultiClickListener;
 import com.bupt.colorfulroute.util.RecyclerViewVelocity;
 import com.bupt.colorfulroute.util.TopSmoothScroller;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +72,8 @@ HistoryFragment extends Fragment {
     HistoryAdapter mAdapter;
     @BindView(R.id.layout_back_to_top)
     LinearLayout layoutBackToTop;
+    @BindView(R.id.right_layout)
+    LinearLayout rightLayout;
     private TextView length;
     private TextView time;
     private TextView number;
@@ -87,15 +93,15 @@ HistoryFragment extends Fragment {
                     //规范输出形式，包括小数点，以及单位字体的大小
                     SpannableString km, num, stime;
                     double h, m;
-                    java.text.DecimalFormat df = new java.text.DecimalFormat("#.##");
+                    DecimalFormat df = new DecimalFormat("#.##");
                     h = (double) (userInfo1.getTotalTime() / 1000 / 3600 % 24);
                     m = (double) (userInfo1.getTotalTime() / 1000 / 60 % 60);
                     km = new SpannableString(df.format(userInfo1.getTotalLength() / 1000) + "公里");
                     num = new SpannableString(userInfo1.getNumber() + "次");
-                    stime=new SpannableString(df.format(h+m/60)+"小时");
+                    stime = new SpannableString(df.format(h + m / 60) + "小时");
                     km.setSpan(new AbsoluteSizeSpan(11, true), df.format(userInfo1.getTotalLength() / 1000).length(), df.format(userInfo1.getTotalLength() / 1000).length() + 2, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
                     num.setSpan(new AbsoluteSizeSpan(11, true), userInfo1.getNumber().toString().length(), userInfo1.getNumber().toString().length() + 1, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-                    stime.setSpan(new AbsoluteSizeSpan(11,true),df.format(h+m/60).length(),df.format(h+m/60).length()+2,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                    stime.setSpan(new AbsoluteSizeSpan(11, true), df.format(h + m / 60).length(), df.format(h + m / 60).length() + 2, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
                     length.setText(km);
                     number.setText(num);
                     time.setText(stime);
@@ -104,10 +110,14 @@ HistoryFragment extends Fragment {
         }
     };
 
-    private View.OnClickListener onClickListener = new View.OnClickListener() {
+    private OnMultiClickListener onMultiClickListener = new OnMultiClickListener() {
         @Override
-        public void onClick(View v) {
+        public void onMultiClick(View v) {
+            Intent intent;
             switch (v.getId()) {
+                case R.id.right_layout:
+                    ((MainActivity) getActivity()).changeFragment(1);
+                    break;
                 case R.id.layout_back_to_top:
                     if (flag) {
                         LinearSmoothScroller smoothScroller = new TopSmoothScroller(getActivity());
@@ -117,6 +127,10 @@ HistoryFragment extends Fragment {
                         layoutBackToTop.setAnimation(AnimationUtils.makeOutAnimation(getContext(), true));
                         flag = false;
                     }
+                    break;
+                case R.id.history_all:
+                    intent = new Intent(getActivity(), AnalysisActivity.class);
+                    startActivity(intent);
                     break;
                 default:
                     break;
@@ -141,8 +155,11 @@ HistoryFragment extends Fragment {
         number = view.findViewById(R.id.number_all);
         itemView = view.findViewById(R.id.history_list_view);
         titleText.setText("足  迹");
+        rightButton.setBackgroundResource(R.mipmap.back_right);
 
-        layoutBackToTop.setOnClickListener(onClickListener);
+        layoutBackToTop.setOnClickListener(onMultiClickListener);
+        historyAll.setOnClickListener(onMultiClickListener);
+        rightLayout.setOnClickListener(onMultiClickListener);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/icons"
+    android:background="@color/primary_light"
     android:orientation="vertical">
 
     <include layout="@layout/title_bar" />
@@ -15,7 +15,12 @@
         android:background="@drawable/bg_edit_text"
         android:gravity="center"
         android:orientation="horizontal"
-        tools:ignore="UselessParent">
+        tools:ignore="UselessParent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
 
         <RadioButton
             android:id="@+id/none"

@@ -1,0 +1,201 @@
+@startuml
+
+title __UIUTILS's Class Diagram__\n
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uiutils {
+      class AchievementDialog {
+          + achTitle : TextView
+          - mContext : Activity
+          - achImage : SimpleDraweeView
+          - achDescription : TextView
+          - achCondition : TextView
+          - achDate : TextView
+          - achShow : Button
+          - mPosition : int
+          - mClickListener : OnClickListener
+          + AchievementDialog()
+          + AchievementDialog()
+          + AchievementDialog()
+          # onCreate()
+          - initDialog()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uiutils {
+      class DescriptionDialog {
+          + descriptionEditText : EditText
+          + descriptionDialogView : LinearLayout
+          - btnSavePop : Button
+          - mContext : Activity
+          - mClickListener : OnClickListener
+          + DescriptionDialog()
+          + DescriptionDialog()
+          + DescriptionDialog()
+          # onCreate()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uiutils {
+      class LogoutDialog {
+          - logoutApp : Button
+          - logoutAccount : Button
+          - mContext : Activity
+          - mClickListener : OnClickListener
+          + LogoutDialog()
+          + LogoutDialog()
+          + LogoutDialog()
+          # onCreate()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uiutils {
+      class ScreenUtils {
+          {static} + getScreenHeight()
+          {static} + getScreenWidth()
+          {static} + getStatusBarHeight()
+          {static} + dp2px()
+          {static} + sp2px()
+          {static} + isEmpty()
+          {static} + px2dip()
+          {static} + px2sp()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uiutils {
+      class ShadowDrawable {
+          {static} + SHAPE_ROUND : int
+          {static} + SHAPE_CIRCLE : int
+          - mShadowPaint : Paint
+          - mBgPaint : Paint
+          - mShadowRadius : int
+          - mShape : int
+          - mShapeRadius : int
+          - mOffsetX : int
+          - mOffsetY : int
+          - mBgColor : int[]
+          - mRect : RectF
+          - ShadowDrawable()
+          {static} + setShadowDrawable()
+          {static} + setShadowDrawable()
+          {static} + setShadowDrawable()
+          {static} + setShadowDrawable()
+          {static} + setShadowDrawable()
+          + setBounds()
+          + draw()
+          + setAlpha()
+          + setColorFilter()
+          + getOpacity()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uiutils {
+      class Builder {
+          - mShape : int
+          - mShapeRadius : int
+          - mShadowColor : int
+          - mShadowRadius : int
+          - mOffsetX : int
+          - mOffsetY : int
+          - mBgColor : int[]
+          + Builder()
+          + setShape()
+          + setShapeRadius()
+          + setShadowColor()
+          + setShadowRadius()
+          + setOffsetX()
+          + setOffsetY()
+          + setBgColor()
+          + setBgColor()
+          + builder()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uiutils {
+      class SlideBackLayout {
+          - mDecorView : ViewGroup
+          - mRootView : View
+          - mActivity : Activity
+          - mViewDragHelper : ViewDragHelper
+          - mSlideWidth : float
+          - mScreenWidth : int
+          - mScreenHeight : int
+          - mPaint : Paint
+          - curSlideX : int
+          + SlideBackLayout()
+          - init()
+          + bind()
+          + onInterceptHoverEvent()
+          + onTouchEvent()
+          + computeScroll()
+          # dispatchDraw()
+          - drawShadow()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uiutils {
+      class DragCallback {
+          + tryCaptureView()
+          + onViewReleased()
+          + onViewPositionChanged()
+          + clampViewPositionHorizontal()
+          + clampViewPositionVertical()
+          + onEdgeDragStarted()
+      }
+    }
+  }
+  
+
+  package com.bupt.colorfulroute {
+    package com.bupt.colorfulroute.runningapp.uiutils {
+      class StatusBarUtils {
+          {static} + setStatusBarColor()
+          {static} + fullScreen()
+      }
+    }
+  }
+  
+
+  AchievementDialog -up-|> Dialog
+  AchievementDialog o-- Achievement : mAchievement
+  DescriptionDialog -up-|> Dialog
+  LogoutDialog -up-|> Dialog
+  ShadowDrawable -up-|> Drawable
+  ShadowDrawable +-down- Builder
+  SlideBackLayout -up-|> FrameLayout
+  SlideBackLayout +-down- DragCallback
+  DragCallback -up-|> Callback
+  LayoutParams -up-|> MarginLayoutParams
+  MarginLayoutParams -up-|> LayoutParams
+  BaseSavedState -up-|> AbsSavedState
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

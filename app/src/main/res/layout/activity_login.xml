@@ -3,7 +3,7 @@
     android:id="@+id/login_bg_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/icons"
+    android:background="@color/primary_light"
     android:orientation="vertical">
 
     <LinearLayout
@@ -18,8 +18,9 @@
             android:layout_marginBottom="120dp"
             android:gravity="center"
             android:textColor="@color/icons"
-            android:textSize="40sp"
-            android:textStyle="bold" />
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:text="卉  跑"/>
 
     </LinearLayout>
 
@@ -33,11 +34,11 @@
 
         <Button
             android:id="@+id/activity_login_weibo_login_button"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/btn_login"
+            android:background="@drawable/selector_btn_circle"
             android:drawableLeft="@mipmap/icon_weibo"
             android:padding="12dp"
             android:text="微博登录"
