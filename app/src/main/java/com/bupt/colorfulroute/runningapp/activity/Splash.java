@@ -28,7 +28,6 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.splash);
         ButterKnife.bind(this);
         StatusBarUtils.fullScreen(this);
-        splashImage.setBackgroundResource(R.mipmap.splash);
 
         //判断是否已经登录，已登录直接跳到主界面
         final Thread myThread = new Thread() {//创建子线程

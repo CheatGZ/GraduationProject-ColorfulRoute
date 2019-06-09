@@ -13,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.AbsoluteSizeSpan;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -343,11 +344,12 @@ public class MainFragment extends Fragment {
 
     private void initDialView() {
         Long monthStart = CheckFormat.getTimeOfMonthStart();
+        System.out.println("cheatGZ 1"+monthStart);
         String start;
         BmobDate bmobCreatedAtDate = null;
         try {
-            start = CheckFormat.longToString(monthStart, "0." +
-                    "yyyy-MM-dd HH:mm:ss");
+            start = CheckFormat.longToString(monthStart, "yyyy-MM-dd HH:mm:ss");
+            System.out.println("cheatGZ 2"+start);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date createdAtDate = sdf.parse(start);
             bmobCreatedAtDate = new BmobDate(createdAtDate);
@@ -387,8 +389,8 @@ public class MainFragment extends Fragment {
         scrollText.add("· 长按规划跑进入自由跑，自由跑不保存跑步数据!");
         scrollText.add("· 上滑隐藏月跑步计数!");
         scrollText.add("· 点击上方\"卉跑\"，选择跑步路径形状!");
-        scrollText.add("· 点击下方蓝色地图，切换地图视图!");
         scrollText.add("· 点击下方红色直尺，选择跑步距离!");
+        scrollText.add("· 点击下方蓝色地图，切换地图视图!");
         scrollText.add("· 点击下方白色定位，进行定位!");
         scrollText.add("· 跑步记录右滑删除，删除后无法恢复!");
         scrollTextView.setList(scrollText);

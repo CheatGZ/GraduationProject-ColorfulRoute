@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -106,11 +104,13 @@ public class LoginActivity extends AppCompatActivity {
         //login activity init
         loginButton.setOnClickListener(onClickListener);
 
-        Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.splash);
-        if (drawable != null) {
-            drawable.setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
-        }
-        loginBgLayout.setBackground(drawable);
+        /**
+         Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.splash);
+         if (drawable != null) {
+         drawable.setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
+         }
+         loginBgLayout.setBackground(drawable);
+         **/
     }
 
     private void initPermission() {

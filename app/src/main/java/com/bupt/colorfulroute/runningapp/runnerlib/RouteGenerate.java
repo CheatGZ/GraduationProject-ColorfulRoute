@@ -820,7 +820,7 @@ public class RouteGenerate {
         return routeData_final;
     }
 
-    //双层四半圆叶花形
+    //四瓣花形
     private static RouteData getFlowerPoints_2(LatLng startPoint, double distance, int orient) {
         ArrayList<LatLng> points = new ArrayList<>();//最终关键点集
         double length_in = distance / 6;//内花瓣路径长度
@@ -908,7 +908,7 @@ public class RouteGenerate {
         return routeData_final;
     }
 
-    //四方叶花形
+    //四瓣花2型
     private static RouteData getFlowerPoints_3(LatLng startPoint, double distance, int orient) {
         ArrayList<LatLng> points = new ArrayList<>();//最终关键点集
         double corelength = distance / 3;//花蕊路径长度
@@ -1049,7 +1049,7 @@ public class RouteGenerate {
         return routeData_final;
     }
 
-    //四半圆叶花形
+    //四瓣花3型
     private static RouteData getFlowerPoints_4(LatLng startPoint, double distance, int orient) {
         ArrayList<LatLng> points = new ArrayList<>();//最终关键点集
         double length = distance / 4;//花瓣路径长度
